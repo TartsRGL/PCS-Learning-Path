@@ -69,31 +69,31 @@ to enhance productivity and usability.
 ### **Development Timeline**
 
 #### **Week 1: Frontend**
-- Day 1: HTML structure for dashboard and projects.
-- Day 2: Global and project-specific CSS.
-- Day 3: Responsive design and media queries.
-- Day 4: Toggle functionality for task and phase details.
-- Day 5: Modal windows for note management.
+- 1: HTML structure for dashboard and projects.
+- 2: Global and project-specific CSS.
+- 3: Responsive design and media queries.
+- 4: Toggle functionality for task and phase details.
+- 5: Modal windows for note management.
 
 #### **Week 2: Backend**
-- Day 8: Laravel setup and database configuration.
-- Day 9: Migrations for `tasks`, `notes`, `users`.
-- Day 10: API endpoints for task and note management.
-- Day 11: User authentication.
-- Day 12: API testing with Postman.
+- 8: Laravel setup and database configuration.
+- 9: Migrations for `tasks`, `notes`, `users`.
+- 10: API endpoints for task and note management.
+- 11: User authentication.
+- 12: API testing with Postman.
 
 #### **Week 3: Integration**
-- Day 13: Fetch data from API to frontend.
-- Day 14: CRUD functionality on the frontend.
-- Day 15: Error handling and validation.
+- 13: Fetch data from API to frontend.
+- 14: CRUD functionality on the frontend.
+- 15: Error handling and validation.
 
 #### **Week 4: Finalization**
-- Day 16: Dashboard enhancements (global modal for notes).
-- Day 17: Statistics and visualizations.
-- Day 18: Note sharing and collaboration.
-- Day 19: Data export (CSV/PDF).
-- Day 20: Deployment (Heroku and GitHub Pages).
-- Day 21: Final testing and presentation.
+- 16: Dashboard enhancements (global modal for notes).
+- 17: Statistics and visualizations.
+- 18: Note sharing and collaboration.
+- 19: Data export (CSV/PDF).
+- 20: Deployment (Heroku and GitHub Pages).
+- 21: Final testing and presentation.
 
 ---
 
@@ -106,7 +106,7 @@ to enhance productivity and usability.
 ### **Getting Started**
 
 #### **Prerequisites**
-- Node.js and npm.
+- Lavarell
 - Laravel 10.
 - MySQL or SQLite.
 
@@ -161,4 +161,4 @@ This project is licensed under the MIT License.
 ---
 
 ### **Acknowledgments**
-Special thanks to Praha Coding School esp. Mr. Wernerdweight(https://github.com/wernerdweight)
+Special thanks to Praha Coding School esp. Mr. Wernerdweight (https://github.com/wernerdweight)
