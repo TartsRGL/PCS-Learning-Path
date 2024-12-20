@@ -97,12 +97,6 @@ to enhance productivity and usability.
 
 ---
 
-### **Deployment**
-- **Frontend:** GitHub Pages.
-- **Backend:** Hosted on Heroku.
-
----
-
 ### **Getting Started**
 
 #### **Prerequisites**
@@ -161,4 +155,4 @@ This project is licensed under the MIT License.
 ---
 
 ### **Acknowledgments**
-Special thanks to Praha Coding School esp. Mr. Wernerdweight (https://github.com/wernerdweight)
+Special thanks to Praha Coding School esp. Mr. Wernerdweight(https://github.com/wernerdweight)
