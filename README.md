@@ -155,4 +155,5 @@ This project is licensed under the MIT License.
 ---
 
 ### **Acknowledgments**
-Special thanks to Praha Coding School esp. Mr. Wernerdweight(https://github.com/wernerdweight)
+Special thanks to [Praha Coding School](https://prahacoding.cz/)
+ esp. [Mr. Wernerdweight](https://github.com/wernerdweight)
