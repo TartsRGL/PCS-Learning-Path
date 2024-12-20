@@ -68,31 +68,31 @@ to enhance productivity and usability.
 
 ### **Development Timeline**
 
-#### **Week 1: Frontend**
+#### **Frontend**
 - 1: HTML structure for dashboard and projects.
 - 2: Global and project-specific CSS.
 - 3: Responsive design and media queries.
 - 4: Toggle functionality for task and phase details.
 - 5: Modal windows for note management.
 
-#### **Week 2: Backend**
+#### **Backend**
 - 8: Laravel setup and database configuration.
 - 9: Migrations for `tasks`, `notes`, `users`.
 - 10: API endpoints for task and note management.
 - 11: User authentication.
 - 12: API testing with Postman.
 
-#### **Week 3: Integration**
+#### **Integration**
 - 13: Fetch data from API to frontend.
 - 14: CRUD functionality on the frontend.
 - 15: Error handling and validation.
 
-#### **Week 4: Finalization**
+#### **Finalization**
 - 16: Dashboard enhancements (global modal for notes).
 - 17: Statistics and visualizations.
 - 18: Note sharing and collaboration.
 - 19: Data export (CSV/PDF).
-- 20: Deployment (Heroku and GitHub Pages).
+- 20: Deployment.
 - 21: Final testing and presentation.
 
 ---
