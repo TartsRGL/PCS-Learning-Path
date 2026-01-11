@@ -33,8 +33,8 @@ body {
 
 /* Commit 4 – Create the primary page split: content + sidebar */
 .l-main {
-  display: flex;  /* Layout defines placement, not appearance */
-  gap: 16px;      /* Space between layout regions */
+  display: flex;        /* Layout defines placement, not appearance */
+  gap: 16px;            /* Space between layout regions */
   align-items: flex-start;
 }
 
@@ -60,12 +60,39 @@ body {
 ====================================== */
 
 /* (Commit 4) Intentionally empty:
-   Component styling starts in later commits to keep layout vs component concerns separate. */
+   Component styling starts in later commits
+   to keep layout vs component concerns separate. */
 
 /* ======================================
    Utilities
    Small helper classes with a single purpose
 ====================================== */
 
-/* (Commit 4) Intentionally empty:
-   Utilities will be introduced in a dedicated commit. */
+/* Commit 5 – Constrain content width without touching layout logic */
+.u-container {
+  max-width: 1000px;
+  margin-inline: auto;
+}
+
+/* Commit 5 – Vertical spacing helpers
+   Utilities are explicit and predictable */
+.u-mb-xs { margin-bottom: 4px; }
+.u-mb-sm { margin-bottom: 8px; }
+.u-mb-md { margin-bottom: 16px; }
+.u-mb-lg { margin-bottom: 24px; }
+
+/* Commit 5 – Top spacing helpers */
+.u-mt-sm { margin-top: 8px; }
+.u-mt-md { margin-top: 16px; }
+.u-mt-lg { margin-top: 24px; }
+
+/* Commit 5 – Text alignment helper */
+.u-text-center {
+  text-align: center;
+}
+
+/* Commit 5 – Visibility helper
+   Useful for demos and progressive disclosure */
+.u-hidden {
+  display: none;
+}
