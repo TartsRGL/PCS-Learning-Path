@@ -1,0 +1,23 @@
+/* Commit 2 – Introduce CSS file structure */
+/* The goal is to define a clear architectural separation,
+   not to style the page visually yet. */
+
+/* ======================================
+   Base
+   Global element-level rules and defaults
+====================================== */
+
+/* ======================================
+   Layout
+   Major page structure (header, main, footer)
+====================================== */
+
+/* ======================================
+   Components
+   Reusable UI blocks (articles, nav, sidebar)
+====================================== */
+
+/* ======================================
+   Utilities
+   Small helper classes with a single purpose
+====================================== */
