@@ -6,53 +6,69 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>L16 – CSS Architecture & Organization</title>
 
-  <!-- CSS will be introduced in later commits -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="L16_C7.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <h1 class="site-title">Personal Blog</h1>
-    <nav class="site-nav">
-      <ul class="nav-list">
-        <li class="nav-list__item"><a href="#" class="nav-list__link">Home</a></li>
-        <li class="nav-list__item"><a href="#" class="nav-list__link">Articles</a></li>
-        <li class="nav-list__item"><a href="#" class="nav-list__link">About</a></li>
+  <!-- Commit 3 – Introduce layout namespace for header -->
+  <header class="l-header" id="home">    
+    
+    <!-- Commit 3 – Convert site title into a reusable component -->
+    <h1 class="c-site-title">Personal Blog</h1>
+
+    <!-- Commit 3 – Refactor navigation into component namespace -->
+    <nav class="c-nav">
+      <ul class="c-nav__list">
+        <li class="c-nav__item"><a href="#home" class="c-nav__link">Home</a></li>
+        <li class="c-nav__item"><a href="#articles" class="c-nav__link">Articles</a></li>
+        <li class="c-nav__item"><a href="#about" class="c-nav__link">About</a></li>
       </ul>
     </nav>
   </header>
 
-  <main class="layout">
-    <section class="content">
-      <article class="article article--featured">
-        <h2 class="article__title">Featured article</h2>
-        <p class="article__meta">Published today</p>
-        <p class="article__text">
+  <!-- Commit 3 – Define main layout wrapper -->
+  <main class="l-main">
+
+    <!-- Commit 3 – Separate content area as layout responsibility -->
+    <section class="l-content" id="articles">
+
+      <!-- Commit 3 – Refactor article into component namespace -->
+      <article class="c-article c-article--featured">
+        <h2 class="c-article__title">Featured article</h2>
+        <p class="c-article__meta">Meta information</p>
+        <p class="c-article__text">
           This article demonstrates a clean HTML structure prepared for scalable CSS architecture.
         </p>
       </article>
 
-      <article class="article">
-        <h2 class="article__title">Regular article</h2>
-        <p class="article__meta">Published earlier</p>
-        <p class="article__text">
+      <!-- Commit 3 – Standard article component -->
+      <article class="c-article">
+        <h2 class="c-article__title">Regular article</h2>
+        <p class="c-article__meta">Meta information</p>
+        <p class="c-article__text">
           Content elements are intentionally simple to keep the focus on CSS organization.
         </p>
       </article>
+
     </section>
 
-    <aside class="sidebar">
-      <div class="sidebar-block">
-        <h3 class="sidebar-block__title">About author</h3>
-        <p class="sidebar-block__text">
+    <!-- Commit 3 – Sidebar treated purely as layout -->
+    <aside class="l-sidebar" id="about">
+
+      <!-- Commit 3 – Replace sidebar-specific block with reusable widget component -->
+      <div class="c-widget">
+        <h3 class="c-widget__title">About author</h3>
+        <p class="c-widget__text">
           Short author bio placeholder.
         </p>
       </div>
+
     </aside>
   </main>
 
-  <footer class="site-footer">
-    <p class="site-footer__text">© 2026 Personal Blog</p>
+  <!-- Commit 3 – Footer moved under layout namespace -->
+  <footer class="l-footer">
+    <p class="c-footer-text">© 2026 Personal Blog</p>
   </footer>
 
 </body>
