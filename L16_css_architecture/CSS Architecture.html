@@ -1,0 +1,59 @@
+<!-- Commit 1 – Add base structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L16 – CSS Architecture & Organization</title>
+
+  <!-- CSS will be introduced in later commits -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1 class="site-title">Personal Blog</h1>
+    <nav class="site-nav">
+      <ul class="nav-list">
+        <li class="nav-list__item"><a href="#" class="nav-list__link">Home</a></li>
+        <li class="nav-list__item"><a href="#" class="nav-list__link">Articles</a></li>
+        <li class="nav-list__item"><a href="#" class="nav-list__link">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="content">
+      <article class="article article--featured">
+        <h2 class="article__title">Featured article</h2>
+        <p class="article__meta">Published today</p>
+        <p class="article__text">
+          This article demonstrates a clean HTML structure prepared for scalable CSS architecture.
+        </p>
+      </article>
+
+      <article class="article">
+        <h2 class="article__title">Regular article</h2>
+        <p class="article__meta">Published earlier</p>
+        <p class="article__text">
+          Content elements are intentionally simple to keep the focus on CSS organization.
+        </p>
+      </article>
+    </section>
+
+    <aside class="sidebar">
+      <div class="sidebar-block">
+        <h3 class="sidebar-block__title">About author</h3>
+        <p class="sidebar-block__text">
+          Short author bio placeholder.
+        </p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p class="site-footer__text">© 2026 Personal Blog</p>
+  </footer>
+
+</body>
+</html>
