@@ -59,9 +59,65 @@ body {
    Reusable UI blocks (articles, nav, sidebar)
 ====================================== */
 
-/* (Commit 4) Intentionally empty:
-   Component styling starts in later commits
-   to keep layout vs component concerns separate. */
+/* Commit 6 – Basic readable site title */
+.c-site-title {
+  margin: 0; /* Header spacing is controlled by layout */
+}
+
+/* Commit 6 – Navigation list reset */
+.c-nav__list {
+  margin: 8px 0 0;   /* Light separation from title */
+  padding: 0;
+  list-style: none;
+}
+
+/* Commit 6 – Navigation items rhythm */
+.c-nav__item {
+  margin-bottom: 4px;
+}
+
+/* Commit 6 – Navigation links: keep default affordance */
+.c-nav__link {
+  text-decoration: underline;
+}
+
+/* Commit 6 – Article component spacing */
+.c-article {
+  margin-bottom: 24px;
+}
+
+/* Commit 6 – Featured article modifier */
+.c-article--featured {
+  margin-bottom: 32px;
+}
+
+/* Commit 6 – Article internal rhythm */
+.c-article__title,
+.c-article__meta,
+.c-article__text {
+  margin: 0 0 8px;
+}
+
+/* Commit 6 – Article meta: visually quieter */
+.c-article__meta {
+  font-size: 0.9em;
+}
+
+/* Commit 6 – Sidebar widget boundary */
+.c-widget {
+  padding: 8px;
+}
+
+/* Commit 6 – Widget internal spacing */
+.c-widget__title,
+.c-widget__text {
+  margin: 0 0 8px;
+}
+
+/* Commit 6 – Footer text reset */
+.c-footer-text {
+  margin: 0;
+}
 
 /* ======================================
    Utilities
@@ -74,8 +130,7 @@ body {
   margin-inline: auto;
 }
 
-/* Commit 5 – Vertical spacing helpers
-   Utilities are explicit and predictable */
+/* Commit 5 – Vertical spacing helpers */
 .u-mb-xs { margin-bottom: 4px; }
 .u-mb-sm { margin-bottom: 8px; }
 .u-mb-md { margin-bottom: 16px; }
@@ -91,8 +146,7 @@ body {
   text-align: center;
 }
 
-/* Commit 5 – Visibility helper
-   Useful for demos and progressive disclosure */
+/* Commit 5 – Visibility helper */
 .u-hidden {
   display: none;
 }
