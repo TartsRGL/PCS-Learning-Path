@@ -7,16 +7,35 @@
    Global element-level rules and defaults
 ====================================== */
 
+/* Commit 7 – Design tokens (global primitives) */
+:root {
+  --font-body: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --text-base: 16px;
+  --line-base: 1.5;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --container: 1000px;
+}
+
 /* Commit 4 – Establish predictable box sizing across the project */
 *,
 *::before,
 *::after {
-  box-sizing: border-box; /* Prevent layout surprises when padding/borders are introduced */
+  box-sizing: border-box;
 }
 
-/* Commit 4 – Remove default body margin to make layout rules explicit */
+/* Commit 7 – Apply base typography from tokens */
 body {
-  margin: 0; /* Browser default margins would distort our layout measurements */
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--line-base);
 }
 
 /* ======================================
@@ -24,34 +43,34 @@ body {
    Major page structure (header, main, footer)
 ====================================== */
 
-/* Commit 4 – Add consistent page padding without styling components */
+/* Commit 7 – Use spacing tokens in layout */
 .l-header,
 .l-main,
 .l-footer {
-  padding: 16px; /* Layout spacing belongs here, not inside component styles */
+  padding: var(--space-3);
 }
 
 /* Commit 4 – Create the primary page split: content + sidebar */
 .l-main {
-  display: flex;        /* Layout defines placement, not appearance */
-  gap: 16px;            /* Space between layout regions */
+  display: flex;
+  gap: var(--space-3);
   align-items: flex-start;
 }
 
 /* Commit 4 – Make the content area flexible */
 .l-content {
-  flex: 1; /* Content grows to fill remaining space */
+  flex: 1;
 }
 
 /* Commit 4 – Give the sidebar a stable readable width */
 .l-sidebar {
-  width: 280px;      /* Fixed layout region to prevent unpredictable line lengths */
-  flex: 0 0 280px;   /* Keep width stable inside flex layout */
+  width: 280px;
+  flex: 0 0 280px;
 }
 
-/* Commit 4 – Keep footer visually separated by layout spacing only */
+/* Commit 7 – Footer separation using tokens */
 .l-footer {
-  margin-top: 16px; /* Layout separation without component styling */
+  margin-top: var(--space-3);
 }
 
 /* ======================================
@@ -61,19 +80,19 @@ body {
 
 /* Commit 6 – Basic readable site title */
 .c-site-title {
-  margin: 0; /* Header spacing is controlled by layout */
+  margin: 0;
 }
 
 /* Commit 6 – Navigation list reset */
 .c-nav__list {
-  margin: 8px 0 0;   /* Light separation from title */
+  margin: var(--space-2) 0 0;
   padding: 0;
   list-style: none;
 }
 
 /* Commit 6 – Navigation items rhythm */
 .c-nav__item {
-  margin-bottom: 4px;
+  margin-bottom: var(--space-1);
 }
 
 /* Commit 6 – Navigation links: keep default affordance */
@@ -83,19 +102,19 @@ body {
 
 /* Commit 6 – Article component spacing */
 .c-article {
-  margin-bottom: 24px;
+  margin-bottom: var(--space-4);
 }
 
 /* Commit 6 – Featured article modifier */
 .c-article--featured {
-  margin-bottom: 32px;
+  margin-bottom: var(--space-5);
 }
 
 /* Commit 6 – Article internal rhythm */
 .c-article__title,
 .c-article__meta,
 .c-article__text {
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-2);
 }
 
 /* Commit 6 – Article meta: visually quieter */
@@ -105,13 +124,13 @@ body {
 
 /* Commit 6 – Sidebar widget boundary */
 .c-widget {
-  padding: 8px;
+  padding: var(--space-2);
 }
 
 /* Commit 6 – Widget internal spacing */
 .c-widget__title,
 .c-widget__text {
-  margin: 0 0 8px;
+  margin: 0 0 var(--space-2);
 }
 
 /* Commit 6 – Footer text reset */
@@ -126,26 +145,27 @@ body {
 
 /* Commit 5 – Constrain content width without touching layout logic */
 .u-container {
-  max-width: 1000px;
+  max-width: var(--container);
   margin-inline: auto;
 }
 
 /* Commit 5 – Vertical spacing helpers */
-.u-mb-xs { margin-bottom: 4px; }
-.u-mb-sm { margin-bottom: 8px; }
-.u-mb-md { margin-bottom: 16px; }
-.u-mb-lg { margin-bottom: 24px; }
+.u-mb-xs { margin-bottom: var(--space-1); }
+.u-mb-sm { margin-bottom: var(--space-2); }
+.u-mb-md { margin-bottom: var(--space-3); }
+.u-mb-lg { margin-bottom: var(--space-4); }
 
 /* Commit 5 – Top spacing helpers */
-.u-mt-sm { margin-top: 8px; }
-.u-mt-md { margin-top: 16px; }
-.u-mt-lg { margin-top: 24px; }
+.u-mt-sm { margin-top: var(--space-2); }
+.u-mt-md { margin-top: var(--space-3); }
+.u-mt-lg { margin-top: var(--space-4); }
 
 /* Commit 5 – Text alignment helper */
 .u-text-center {
   text-align: center;
 }
 
+/* Commit 5 – Visibility helper */
 /* Commit 5 – Visibility helper */
 .u-hidden {
   display: none;
