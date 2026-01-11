@@ -7,17 +7,65 @@
    Global element-level rules and defaults
 ====================================== */
 
+/* Commit 4 – Establish predictable box sizing across the project */
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Prevent layout surprises when padding/borders are introduced */
+}
+
+/* Commit 4 – Remove default body margin to make layout rules explicit */
+body {
+  margin: 0; /* Browser default margins would distort our layout measurements */
+}
+
 /* ======================================
    Layout
    Major page structure (header, main, footer)
 ====================================== */
+
+/* Commit 4 – Add consistent page padding without styling components */
+.l-header,
+.l-main,
+.l-footer {
+  padding: 16px; /* Layout spacing belongs here, not inside component styles */
+}
+
+/* Commit 4 – Create the primary page split: content + sidebar */
+.l-main {
+  display: flex;  /* Layout defines placement, not appearance */
+  gap: 16px;      /* Space between layout regions */
+  align-items: flex-start;
+}
+
+/* Commit 4 – Make the content area flexible */
+.l-content {
+  flex: 1; /* Content grows to fill remaining space */
+}
+
+/* Commit 4 – Give the sidebar a stable readable width */
+.l-sidebar {
+  width: 280px;      /* Fixed layout region to prevent unpredictable line lengths */
+  flex: 0 0 280px;   /* Keep width stable inside flex layout */
+}
+
+/* Commit 4 – Keep footer visually separated by layout spacing only */
+.l-footer {
+  margin-top: 16px; /* Layout separation without component styling */
+}
 
 /* ======================================
    Components
    Reusable UI blocks (articles, nav, sidebar)
 ====================================== */
 
+/* (Commit 4) Intentionally empty:
+   Component styling starts in later commits to keep layout vs component concerns separate. */
+
 /* ======================================
    Utilities
    Small helper classes with a single purpose
 ====================================== */
+
+/* (Commit 4) Intentionally empty:
+   Utilities will be introduced in a dedicated commit. */
