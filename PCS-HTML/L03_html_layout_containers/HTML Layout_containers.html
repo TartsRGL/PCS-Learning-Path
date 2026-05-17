@@ -1,0 +1,80 @@
+<!-- Commit 1 – Initialize base HTML for layout containers (L3 sandbox) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PCShtml Lesson 3 – Layout Containers (HTML view)" />
+  <title>PCShtml L3 – Layout Containers</title>
+</head>
+
+<body>
+
+  <!-- Commit 2 – Add global page wrapper -->
+  <div class="page">
+
+    <header>
+      <h1>Layout Containers (HTML view)</h1>
+      <p>We decide container structure before CSS.</p>
+    </header>
+
+    <main>
+
+      <!-- Commit 3 – Add content container -->
+      <div class="container">
+
+        <!-- Commit 4 – Add layout grouping wrapper -->
+        <div class="layout">
+
+          <article>
+            <h2>Article Title</h2>
+
+            <!-- Commit 5 – Add structural content wrapper -->
+            <div class="content-group">
+
+              <p>
+                This is the main content. In L3 we focus on wrappers that exist
+                purely for layout control.
+              </p>
+
+              <!-- Commit 6 – Add nested layout wrapper -->
+              <div class="sub-layout">
+
+                <!-- Commit 7 – Introduce section-specific layout container -->
+                <section>
+                  <div class="section-container">
+                    <h3>Section A</h3>
+                    <p>Some grouped content.</p>
+                  </div>
+                </section>
+
+                <section>
+                  <h3>Section B</h3>
+                  <p>Some grouped content.</p>
+                </section>
+
+              </div>
+
+            </div>
+
+          </article>
+
+          <aside>
+            <h2>Sidebar</h2>
+            <p>Complementary content.</p>
+          </aside>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <footer>
+      <p>&copy; 2026 PCShtml</p>
+    </footer>
+
+  </div>
+
+</body>
+</html>

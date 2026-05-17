@@ -1,0 +1,122 @@
+<!-- Commit 5 - Finalize complete document hierarchy -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Lesson 8 – Final Real World HTML Composition" />
+  <title>TechPulse Insights - The Silent Power of Web Accessibility</title>
+</head>
+<body>
+
+  <!-- 1. Accessibility skip link -->
+  <a href="#main-content" class="skip-link" style="position:absolute; top:-40px;">Skip to main content</a>
+
+  <!-- 2. Global Header & Navigation -->
+  <header>
+    <div class="logo">
+      <strong>TechPulse Insights</strong>
+    </div>
+    <nav aria-label="Main Navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/articles" aria-current="page">Articles</a></li>
+        <li><a href="/about">About Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 3. Primary Content Area -->
+  <main id="main-content">
+    <div class="layout-grid">
+      
+      <!-- Core Article -->
+      <article>
+        <header>
+          <h1>The Silent Power of Web Accessibility</h1>
+          <p>Published on <time datetime="2026-04-20">April 20, 2026</time> by <a href="#author-info">Antonín Pergl</a></p>
+        </header>
+
+        <figure>
+          <img src="https://via.placeholder.com/800x400.png?text=Web+Accessibility+Tree" alt="Diagram showing how HTML tags create an accessibility tree for screen readers" loading="lazy" />
+          <figcaption>Fig 1. The translation of HTML nodes into the Accessibility Tree.</figcaption>
+        </figure>
+        
+        <section aria-labelledby="foundation-heading">
+          <h2 id="foundation-heading">Beyond Aesthetics</h2>
+          <p>In modern web development, we spend countless hours polishing CSS grid layouts and writing clever JavaScript frameworks. However, beneath the visual layer lies the true foundation of the web: semantic HTML. Without valid document structure, even the most beautiful layout fails to reach users relying on screen reading software.</p>
+        </section>
+
+        <section aria-labelledby="inclusive-heading">
+          <h2 id="inclusive-heading">Building for Everyone</h2>
+          <p>Correct use of tags like <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, and <code>&lt;header&gt;</code> isn't just about code cleanliness. It allows screen readers, search engines, and assistive technologies to understand the exact structure and meaning of your document. It is the cheapest, yet most effective, way to improve SEO and digital inclusion.</p>
+        </section>
+
+        <hr>
+
+        <!-- Interactive Form Section -->
+        <section aria-labelledby="newsletter-heading">
+          <h2 id="newsletter-heading">Stay Updated</h2>
+          <p>Sign up to receive our Weekly Dev Tips right in your inbox.</p>
+          
+          <form action="/subscribe-newsletter" method="POST" novalidate>
+            <fieldset>
+              <legend>Contact Details</legend>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-hint" />
+                <p id="name-hint" class="hint" style="font-size: 0.8rem; color: #555;">How should we address you?</p>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required autocomplete="email" />
+              </div>
+            </fieldset>
+
+            <fieldset>
+              <legend>Topics of Interest</legend>
+              <label><input type="checkbox" name="interest" value="a11y" /> Accessibility (A11y)</label>
+              <label><input type="checkbox" name="interest" value="css" /> Advanced CSS</label>
+            </fieldset>
+
+            <button type="submit">Subscribe</button>
+          </form>
+        </section>
+        
+        <footer>
+          <p>Category: <em>Web Engineering</em> | Tags: <em>HTML, A11y, Design</em></p>
+        </footer>
+      </article>
+
+      <!-- Contextual Sidebar -->
+      <aside aria-labelledby="author-heading" id="author-info">
+        <h2 id="author-heading">About the Author</h2>
+        <p><strong>Antonín Pergl</strong> is an aspiring Junior Frontend Developer, passionate about creating inclusive and highly performant web applications using modern HTML and CSS standards. Antonín advocates for building a web that works for everyone.</p>
+        <hr>
+        <h3>Related Resources</h3>
+        <nav aria-label="Sidebar Navigation">
+          <ul>
+            <li><a href="https://www.w3.org/WAI/">W3C Web Accessibility Initiative</a></li>
+            <li><a href="/tags/semantics">Semantics Deep-dive</a></li>
+            <li><a href="/forms">Inclusive Forms</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- 4. Global Footer -->
+  <footer>
+    <nav aria-label="Footer Navigation">
+      <ul>
+        <li><a href="/accessibility">Accessibility Statement</a></li>
+        <li><a href="/privacy">Privacy Policy</a></li>
+      </ul>
+    </nav>
+    <p>&copy; 2026 TechPulse Insights. All code written with semantic intent.</p>
+  </footer>
+
+</body>
+</html>

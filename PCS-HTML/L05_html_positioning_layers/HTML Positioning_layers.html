@@ -1,0 +1,69 @@
+<!-- Commit 1 – Define explicit parent-child containers -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PCShtml Lesson 5 – Positioning Prep in HTML" />
+  <title>PCShtml L5 – Positioning Prep</title>
+</head>
+
+<body>
+
+  <!-- Commit 3 – Structure for sticky/fixed components -->
+  <div id="global-notice" class="fixed-element">
+    <p>Important Update: Positioning is about the DOM tree.</p>
+  </div>
+
+  <header>
+    <h1>Positioning Prep</h1>
+    <p>Everything starts with a container.</p>
+  </header>
+
+  <!-- Commit 3 – Structure for sticky/fixed components -->
+  <nav class="sticky-nav">
+    <ul>
+      <li><a href="#parent">Parent</a></li>
+      <li><a href="#layers">Layers</a></li>
+      <li><a href="#stacking">Stacking</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <article class="positioning-parent">
+      <header>
+        <h2 id="parent">The Parent Container</h2>
+        <!-- Commit 2 – Add overlay/layering markup -->
+        <span class="status-badge" aria-label="Status">Draft</span>
+        <p>This element will act as the anchor for everything inside it.</p>
+      </header>
+
+      <!-- Commit 4 – Nested stacking contexts -->
+      <section id="layers" class="child-content has-tooltip">
+        <p>In CSS, this would be the flow-relative content.</p>
+        
+        <div id="stacking" class="tooltip-container">
+          <!-- Commit 5 – Final polish of the positioning-ready skeleton -->
+          <button type="button" aria-expanded="false" title="Learn more about positioning">More Info</button>
+          
+          <div class="tooltip-body" role="tooltip">
+             <p>I am a nested layer inside a child element.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Commit 5 – Final polish of the positioning-ready skeleton -->
+      <!-- (Natural source order/stacking prep also goes here) -->
+      <aside class="overlay-note">
+        <!-- Commit 2 – Add overlay/layering markup -->
+        <p>This note will sit on top of the content once positioned. Its place in the HTML helps define order, but stacking in CSS depends on more than source order alone.</p>
+      </aside>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PCShtml</p>
+  </footer>
+
+</body>
+</html>

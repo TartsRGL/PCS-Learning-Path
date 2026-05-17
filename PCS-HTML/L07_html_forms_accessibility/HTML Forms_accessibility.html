@@ -1,0 +1,80 @@
+<!-- Commit 5 - Complete complex form composition -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PCShtml Lesson 7 – Forms and Accessibility" />
+  <title>PCShtml L7 – Forms & A11y</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Forms & Accessibility</h1>
+    <p>Building forms that everyone can use.</p>
+  </header>
+
+  <main>
+    <section class="form-container">
+      <h2>Registration</h2>
+      
+      <!-- Commit 1 - Setup form container and default action -->
+      <form action="/submit-registration" method="POST" novalidate>
+        
+        <!-- Commit 2 - Add basic inputs with accessible labels -->
+        <div class="form-group">
+          <label for="first-name">First Name</label>
+          <input type="text" id="first-name" name="first_name" required />
+        </div>
+
+        <!-- Commit 4 - Implement structured errors and hints -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required aria-describedby="pwd-hint" />
+          <p id="pwd-hint" class="input-hint">Must be at least 8 characters long.</p>
+        </div>
+
+        <div class="form-group has-error">
+          <label for="email-address">Email Address</label>
+          <input type="email" id="email-address" name="email" required aria-invalid="true" aria-errormessage="email-error" />
+          <p id="email-error" class="input-error" role="alert">Please enter a valid email address.</p>
+        </div>
+
+        <!-- Commit 3 - Group logical fields with fieldsets -->
+        <fieldset class="form-group">
+          <legend>Account Type</legend>
+          
+          <div class="radio-choice">
+            <input type="radio" id="type-personal" name="account_type" value="personal" checked />
+            <label for="type-personal">Personal</label>
+          </div>
+
+          <div class="radio-choice">
+            <input type="radio" id="type-business" name="account_type" value="business" />
+            <label for="type-business">Business</label>
+          </div>
+        </fieldset>
+
+        <!-- Commit 5 - Complete complex form composition -->
+        <!-- Provide structured submit area, like terms agreement and primary button -->
+        <div class="form-actions">
+          <div class="checkbox-choice">
+            <input type="checkbox" id="terms" name="terms" required />
+            <label for="terms">I agree to the <a href="/terms">Terms and Conditions</a>.</label>
+          </div>
+          
+          <button type="submit" class="btn-submit">Create Account</button>
+        </div>
+
+      </form>
+
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PCShtml</p>
+  </footer>
+
+</body>
+</html>

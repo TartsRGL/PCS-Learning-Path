@@ -1,0 +1,72 @@
+<!-- Commit 1 – Define base component container -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="PCShtml Lesson 6 – Components and Reusability in HTML" />
+  <title>PCShtml L6 – Components</title>
+</head>
+
+<body>
+
+  <header>
+    <h1>Thinking in Components</h1>
+    <p>Building reusable pieces of UI.</p>
+  </header>
+
+  <main>
+    <section class="components-container">
+      <h2>Products</h2>
+      
+      <!-- Commit 5 – Assemble components into a collection (ul/li for repeating elements) -->
+      <ul class="card-list" style="list-style: none; padding: 0;">
+        
+        <!-- Component Instance 1 -->
+        <li>
+          <!-- Commit 1 – Define base component container -->
+          <article class="ui-component">
+            <!-- Commit 2 & 4 – Extract card structure and apply variant classes -->
+            <div class="card card--featured">
+              <!-- Commit 3 – Organize component internal structure -->
+              <header class="card-header">
+                <span class="card-badge">Featured</span>
+                <h3 class="card-title">Premium Keyboard</h3>
+              </header>
+              <div class="card-body">
+                <p class="card-description">A mechanical keyboard for seamless typing.</p>
+              </div>
+              <footer class="card-footer">
+                <button type="button" class="card-button card-button--primary">Buy Now</button>
+              </footer>
+            </div>
+          </article>
+        </li>
+
+        <!-- Component Instance 2 - Standard variant -->
+        <li>
+          <article class="ui-component">
+            <div class="card card--standard">
+              <header class="card-header">
+                <h3 class="card-title">Basic Mouse</h3>
+              </header>
+              <div class="card-body">
+                <p class="card-description">Standard optical mouse for everyday tasks.</p>
+              </div>
+              <footer class="card-footer">
+                <button type="button" class="card-button card-button--secondary">Add to Cart</button>
+              </footer>
+            </div>
+          </article>
+        </li>
+
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PCShtml</p>
+  </footer>
+
+</body>
+</html>
