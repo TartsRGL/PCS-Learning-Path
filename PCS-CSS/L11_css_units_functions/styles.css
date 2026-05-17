@@ -1,0 +1,290 @@
+/* Commit 1: Add basic structure & root variables */
+:root{
+  /* base scale */
+  --base-size: 16px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+
+  /* colors */
+  --bg: #0f1115;
+  --surface: #171a21;
+  --text: #e9eef5;
+  --muted: #a8b3c7;
+  --accent: #7cc5ff;
+
+  /* container width */
+  --container-max: 68rem;
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: var(--base-size); }
+
+body{
+  margin: 0;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, -apple-system, Segoe UI,
+               Roboto, Ubuntu, Cantarell, Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.container{
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-2);
+}
+
+.site-header, .site-footer{
+  background: var(--surface);
+  padding-block: var(--space-3);
+}
+
+.title{
+  margin: 0 0 var(--space-1);
+}
+
+.subtitle{
+  margin: 0;
+  color: var(--muted);
+}
+
+main{ padding-block: var(--space-4); }
+
+.intro, .demo{
+  background: var(--surface);
+  padding: var(--space-3);
+  border-radius: 12px;
+}
+
+.intro{ margin-bottom: var(--space-3); }
+
+/* Commit 2: Introduce fluid typography with clamp() */
+
+/* Fluid type scale — grows between min, pref, max */
+h1.title {
+  font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+  color: var(--accent);
+  letter-spacing: 0.03em;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.2vw + 0.6rem, 1.25rem);
+}
+
+h2 {
+  font-size: clamp(1.3rem, 1.5vw + 0.8rem, 1.75rem);
+  margin-bottom: var(--space-2);
+}
+
+p {
+  font-size: clamp(0.95rem, 0.4vw + 0.8rem, 1.1rem);
+  color: var(--muted);
+}
+
+/* small refinement for footer text */
+.site-footer small {
+  font-size: clamp(0.8rem, 0.3vw + 0.7rem, 0.9rem);
+  color: var(--muted);
+}
+/* Commit 3: Width constraints with min() / max() */
+
+/* Demonstrate flexible container width */
+.demo {
+  /* keep padding from before */
+  width: min(90%, 60rem);   /* never wider than 60rem */
+  margin-inline: auto;
+}
+
+/* Add an inner box to show max() behavior */
+.demo::before {
+  content: "Resizable box using max()";
+  display: block;
+  background: var(--accent);
+  color: var(--bg);
+  text-align: center;
+  padding: var(--space-2);
+  border-radius: 8px;
+  margin-bottom: var(--space-2);
+  width: max(40%, 20rem);   /* never smaller than 20rem */
+}
+
+/* Commit 4: Spacing scale in rem + nested em demo */
+
+/* New demo article */
+.text-scale {
+  margin-top: var(--space-3);
+  padding: var(--space-3);
+  background: #1d222b;
+  border-radius: 10px;
+}
+
+.text-scale h3 {
+  font-size: 1.2rem;
+  margin-bottom: var(--space-2);
+  color: var(--accent);
+}
+
+.text-scale p {
+  margin-bottom: var(--space-1);
+}
+
+/* Nested block using em-relative scale */
+.nested {
+  margin-top: var(--space-2);
+  padding: 1.5em; /* depends on parent's font-size */
+  background: #262b36;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.nested p.small { font-size: 0.8em; }
+.nested p.big   { font-size: 1.25em; }
+
+/* Commit 5: Add hero section using viewport units */
+
+.hero {
+  /* fill visible screen height */
+  min-height: 100vh;
+  /* on modern browsers, prefer small viewport height */
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #1a1f2b, #101218);
+  color: var(--text);
+  padding-inline: var(--space-2);
+}
+
+.hero-content {
+  max-width: 40rem;
+}
+
+.hero h2 {
+  font-size: clamp(1.8rem, 3vw + 1rem, 3rem);
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+
+.hero p {
+  margin-bottom: var(--space-3);
+}
+
+.btn-hero {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  padding: 0.75em 1.5em;
+  border-radius: 0.5em;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.btn-hero:hover {
+  background: #98d3ff;
+}
+
+/* Commit 6: Responsive cards with clamp() gaps + minmax grid */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: clamp(1rem, 2vw, 2.5rem);
+  margin-top: var(--space-4);
+}
+
+.card {
+  background: #1d222b;
+  border-radius: 10px;
+  padding: var(--space-3);
+  text-align: center;
+  font-weight: 500;
+  color: var(--text);
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  background: #222836;
+}
+
+/* Commit 7: Utility classes for fluid width and accent buttons */
+
+/* 1️⃣ Fluid container — expands to full viewport width */
+.fluid {
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(1rem, 4vw, 3rem);
+}
+
+/* 2️⃣ Accent button — reusable variant of hero button */
+.btn {
+  display: inline-block;
+  padding: 0.6em 1.2em;
+  border-radius: 0.5em;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn-accent {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.btn-accent:hover {
+  background: #98d3ff;
+  transform: translateY(-2px);
+}
+
+/* 3️⃣ Subtle text helpers */
+.text-center { text-align: center; }
+.text-muted  { color: var(--muted); }
+
+/* 4️⃣ Margin helpers */
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+
+/* Commit 8: Final polish and teaching notes
+   -----------------------------------------
+   - unify border radius scale
+   - refine spacing consistency
+   - add footer note for teaching clarity
+*/
+
+/* 1️⃣ Unified radius for all cards, demos, and containers */
+.demo,
+.text-scale,
+.card,
+.hero {
+  border-radius: 12px;
+}
+
+/* 2️⃣ Consistent spacing bottom for sections */
+section {
+  margin-bottom: var(--space-4);
+}
+
+/* 3️⃣ Slightly softer shadow for subtle depth */
+.card {
+  box-shadow: 0 0 6px rgba(0,0,0,0.25);
+}
+
+/* 4️⃣ Teaching reference block */
+:root::after {
+  content: "Lesson 11 • Modern Units & Functions • clamp(), min(), max(), rem, em, vw, vh";
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: var(--space-4);
+  padding-bottom: var(--space-3);
+}

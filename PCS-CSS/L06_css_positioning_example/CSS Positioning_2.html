@@ -1,0 +1,108 @@
+<!-- Commit 1: feat: Add base HTML structure for recipes project -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Recepty
+    </title>
+    <!-- Commit 3: feat: Add styling variables and base styles -->
+    <style>
+        :root {
+            --primarycolor: blueviolet;
+            --gap: 1rem;
+            --box-padding: 2rem;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* Commit 6: Adjust body left;right padding for better alignment */
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        header {
+            background-color: var(--primarycolor);
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .container {
+            display: flex;
+            gap: var(--gap);
+        }
+        img {
+            border: 2px solid var(--primarycolor);
+            padding: var(--box-padding);
+            border-radius: 5px;
+            max-width: 100%;
+            height: auto;
+        }
+        /* Commit 5: feat: Enhance interactivity with hover and transitions */
+        .circle {
+            background-color: var(--primarycolor);
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            border: 1px solid white;
+            transition: transform 0.5s ease, box-shadow 0.3s ease, width 0.5s ease, height 0.5s ease;
+        }
+        .circle:hover {
+            box-shadow: 0 0 15px 0 yellow;
+            transform: rotate(360deg);
+            width: 150px;
+            height: 150px;
+        }
+        .circle p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Recepty</h1>
+        <!-- Commit 2: feat: Introduce navigation and images -->
+        <nav>
+            <ul>
+                <li><a href="#">Recepty</a></li>
+                <li><a href="#">Kontakty</a></li>
+                <li><a href="#">E-shop</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article>
+            <h2>Palačinky</h2>
+            <!-- Commit 2: feat: Introduce navigation and images -->
+            <div class="container">
+                <img width="250" src="img/palacinky1.jpg" alt="Domácí palačinky1">
+                <img width="250" src="img/palacinky2.jpg" alt="Domácí palačinky2">
+            </div>
+            <p>Tady bude recept na palačinky...</p>
+            <!-- Commit 4: feat: Introduce positioning with circle element -->
+            <div class="circle">
+                <p>mňam</p>
+            </div>
+        </article>
+    </main>
+
+</body>
+</html>

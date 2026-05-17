@@ -1,0 +1,121 @@
+<!-- Commit 1 – Add basic structure -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>My Personal Blog</title>
+
+  <style>
+    :root {
+      --color-bg: #ffffff;
+        --color-text: #111111;
+      --color-primary: #2a7cff;
+      --color-accent: #ff5722;
+      --base-font: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --base-line-height: 1.5;
+    }
+
+    /* Commit 2 – Dark theme via media query */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-bg: #111111;
+        --color-text: #ffffff;
+        --color-primary: #7abaff;
+        --color-accent: #ff8a50;
+      }
+    }
+
+    /* Commit 3 – Apply variables to layout */
+    body {
+      margin: 0;
+      background-color: var(--color-bg, #fff);
+      color: var(--color-text, #000);
+      font-family: var(--base-font, sans-serif);
+      line-height: var(--base-line-height, 1.5);
+    }
+
+    a {
+      color: var(--color-primary, blue);
+      text-decoration: none;
+    }
+
+    a:focus,
+    a:focus-visible {
+      outline: 3px solid var(--color-accent, orange);
+      outline-offset: 2px;
+    }
+
+    header {
+      padding: 2rem 1rem;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    h1, h2 {
+      margin: 0 0 .5rem 0;
+    }
+
+    p {
+      margin: 0 0 1rem 0;
+    }
+
+    /* Commit 5 – Manual toggle via .dark-theme class on html */
+    html.dark-theme {
+      --color-bg: #111111;
+      --color-text: #ffffff;
+      --color-primary: #7abaff;
+      --color-accent: #ff8a50;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 100;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+  </style>
+
+</head>
+
+<body>
+  
+  <button class="theme-toggle" id="toggleTheme">Toggle Theme</button>
+
+  <header>
+    <h1>My Personal Blog</h1>
+    <p>Welcome to my thoughts and stories.</p>
+  </header>
+
+  <main>
+    
+    <article>
+      <h2>First Post</h2>
+      <p>This is a short intro to my blog. <a href="#">Read more...</a></p>
+    </article>
+
+  </main>
+
+  <script>
+    // Commit 5 – manual theme toggle
+    const toggleBtn = document.getElementById('toggleTheme');
+    toggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark-theme');
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!-- Commit 1 – Add basic HTML structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lesson 10 – CSS Transitions & Animations</title>
+  <style>
+    /* Commit 2 – Add basic CSS styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }   
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container { text-align: center; }
+
+    h1 { margin-bottom: 1.5rem; }
+    h2 { margin-bottom: 1rem; }
+
+    .boxes {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .box {
+      width: 120px;
+      height: 120px;
+      background: #3498db;
+      color: white;  
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    /* Commit 3 – hover transitions for Box 1 */
+    .box1:hover {
+      background: #2ecc71;
+      transform: scale(1.08);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+    }
+
+    /* Commit 4 – transform effect for Box 2 */
+    .box2:hover {
+      background: #9b59b6;
+      transform: scale(1.1) rotate(8deg) translateY(-6px);
+      box-shadow: 0 14px 28px rgba(0,0,0,0.25);
+    }
+
+    /* Commit 5 – keyframes animation for Box 3 (on hover) */
+        .box3:hover {
+      animation: pulse 2s infinite ease-in-out;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        background: #3498db;
+      }
+      50% {
+        transform: scale(1.15);
+        background: #e67e22;
+      }
+    }       
+  </style>
+</head>
+
+<body>
+  <section class="container">
+    <h1>Animated Boxes</h1>
+    <h2>Hover over Box 1 - transition effect</h2>
+    <h2>Hover over Box 2 - transform effect</h2>
+    <h2>Hover over Box 3 - keyframes animation</h2>
+    <div class="boxes">
+      <div class="box box1">Box 1</div>
+      <div class="box box2">Box 2</div>
+      <div class="box box3">Box 3</div>
+    </div>
+  </section>
+</body>
+</html>

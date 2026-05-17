@@ -1,0 +1,236 @@
+<!-- Commit 1 – Add basic structure -->
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L13 – Forms & Accessibility</title>
+    <!-- Commit 2 – Base layout with horizontal input spacing -->
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 2rem;
+            background: #f7f7f7;
+        }
+
+        .form-wrapper {
+            max-width: 420px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin-bottom: 1.5rem;
+        }
+
+        .form {
+            padding: 0 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.95rem;
+        }
+
+        /* Commit 3 – transition for input state changes */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.6rem 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            background: #fff;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
+
+        /* Commit 3 – highlight input on focus */
+        input:focus {
+            border-color: #0074d9;
+            background: #f0f8ff;
+            outline: none;
+        }
+
+        /* Commit 3 – clear ring for keyboard accessibility */
+        input:focus-visible {
+            box-shadow: 0 0 0 4px rgba(0, 116, 217, 0.20);
+        }
+
+        button {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            background: #0074d9;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #005fa3;
+        }
+
+        /* Commit 4 – custom checkbox style */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .checkbox-label {
+            position: relative;
+            cursor: pointer;
+            padding-left: 2rem;
+            user-select: none;
+        }
+
+        /* Hide native checkbox */
+        .checkbox-label input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            left: 0;
+            top: 0;
+            height: 1.25rem;
+            width: 1.25rem;
+            margin: 0;
+        }
+
+        /* Custom box */
+        .custom-checkbox {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 1.25rem;
+            width: 1.25rem;
+            border: 2px solid #0074d9;
+            border-radius: 4px;
+            background: #fff;
+            transition: background 0.15s, border-color 0.2s;
+        }
+
+        /* Checked state */
+        .checkbox-label input[type="checkbox"]:checked ~ .custom-checkbox {
+            background: #0074d9;
+            border-color: #005fa3;
+        }
+
+        /* Check mark (simple tick) */
+        .custom-checkbox:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+        .checkbox-label input[type="checkbox"]:checked ~ .custom-checkbox:after {
+            display: block;
+        }
+        .checkbox-label .custom-checkbox:after {
+            left: 0.35rem;
+            top: 0.05rem;
+            width: 0.3rem;
+            height: 0.7rem;
+            border: solid #fff;
+            border-width: 0 0.18rem 0.18rem 0;
+            transform: rotate(45deg);
+            content: "";
+        }
+
+        /* Keyboard focus (accessibility) */
+        .checkbox-label input[type="checkbox"]:focus ~ .custom-checkbox {
+            box-shadow: 0 0 0 3px rgba(0, 116, 217, 0.18);
+            outline: none;
+        }
+
+        /* Commit 5 – error message under email */
+        .error-message {
+            color: #d90000;
+            font-size: 0.93rem;
+            margin-top: 0.25rem;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <main class="form-wrapper"> 
+        <h1>Registrace</h1>
+
+        <form class="form" autocomplete="off" aria-describedby="formdesc" novalidate>
+            <div id="formdesc" style="display:none;">
+                Povinná pole označena hvězdičkou.
+            </div>
+            <div class="form-group">
+                <label for="name">Jméno</label>
+                <input type="text" id="name" name="name" autocomplete="off" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    aria-describedby="email-error"
+                    required 
+                    autocomplete="off"
+                />
+                <div id="email-error" class="error-message" role="alert" style="display: none;">
+                    Prosím vyplňte správný e-mail.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Heslo</label>
+                <input type="password" id="password" name="password" autocomplete="off" />
+            </div>
+
+            <!-- Commit 4 – custom checkbox group -->
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="agree" name="agree" />
+                    <span class="custom-checkbox"></span>
+                    Souhlasím s podmínkami
+                </label>
+            </div>
+
+            <button type="submit">Odeslat</button>
+        </form>
+    </main>
+
+<!-- Commit 5 – Add ARIA support and error message for email -->
+    <script>
+    const form = document.querySelector('.form');
+    const email = document.getElementById('email');
+    const errorMsg = document.getElementById('email-error');
+
+    form.addEventListener('submit', function(e) {
+        if (!email.checkValidity()) {
+            errorMsg.style.display = 'block';
+            e.preventDefault();
+        } else {
+            errorMsg.style.display = 'none';
+        }
+    });
+
+    email.addEventListener('input', function() {
+        if (email.checkValidity()) {
+            errorMsg.style.display = 'none';
+        }
+    });
+    </script>
+</body>
+</html>

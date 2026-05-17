@@ -1,0 +1,93 @@
+<!-- Commit 1 – Add basic structure -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PCScss L12 – Advanced Typography</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Commit 6 – Add custom web font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Merriweather&display=swap" rel="stylesheet">
+  <style>
+    /* Commit 2 – Add base typography styles */
+    body {
+      font-family: 'Merriweather', serif;
+      font-size: 1.125rem;
+      color: #222;
+      line-height: 1.7;
+      margin: 0;
+      padding: 0 1.5rem;
+      background: #fafaf9;
+    }
+    h1, h2 {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-top: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      /* Commit 7 – Responsive font-size with clamp() */
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-top: 2rem;
+      text-align: center;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    section {
+      max-width: 600px;
+      margin: 2rem auto;
+      background: #fff;
+      border-radius: 0.7rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      padding: 2rem;
+    }
+    p {
+      margin-bottom: 1.25rem;
+      hyphens: auto;
+      overflow-wrap: break-word;
+    }
+    /* Commit 7 – Multi-column layout for .multi-col */
+    .multi-col {
+      column-count: 2;
+      column-gap: 2rem;
+      /* Optional: add rule for better break */
+      orphans: 2;
+      widows: 2;
+    }
+    .ellipsis-demo {
+      margin: 2.5rem auto 0 auto;
+      max-width: 400px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      border: 1px dashed #aaa;
+      background: #f4f4f4;
+      padding: 0.7rem 1rem;
+      font-size: 1.05rem;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Advanced Typography Demo</h1>
+    <section>
+      <h2>Sample Article</h2>
+      <p lang="en">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec augue nec urna cursus tristique. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae.
+      </p>
+      <p lang="en">
+        Nullam feugiat, tortor nec commodo ultrices, sapien nisi dictum enim, et dictum odio orci a ex. Suspendisse potenti. Supercalifragilisticexpialidocious pseudopseudohypoparathyroidism.
+      </p>
+      <div class="ellipsis-demo" title="Full text: This sentence is intentionally very long to demonstrate text-overflow.">
+        This sentence is intentionally very long to demonstrate text-overflow.
+      </div>
+      <!-- Commit 7 – Multi-column demo -->
+      <h2>Multi-column Text Demo</h2>
+      <p class="multi-col" lang="en">
+        The multi-column layout module allows you to flow content into several columns, just like in newspapers or magazines. This paragraph demonstrates how you can easily create a two-column layout using only CSS. As you resize the window, the columns will automatically adjust. For longer texts, browser will try to balance the amount of text in each column. Try resizing the window to see the effect. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum euismod turpis nec dui tristique, a feugiat leo dictum. Nullam malesuada ex at dui tempor, eu venenatis urna ullamcorper. Aliquam erat volutpat.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

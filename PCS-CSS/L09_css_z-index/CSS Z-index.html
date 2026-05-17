@@ -1,0 +1,105 @@
+<!-- Commit 1 – Add base HTML structure and minimal layout -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>L9 – Z-index (Lite)</title>
+  <style>
+    :root{
+      --ink:#e8eaed; --muted:#9aa0a6; --surface:#151922; --elev:#1c2230; --backdrop:rgba(0,0,0,.6);
+      --blue:#cfe0ff; --peach:#ffe4c2; --pink:#ffd0df;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font:16px/1.45 system-ui, sans-serif;
+      color:var(--ink);
+      background:#0f1115;
+    }
+    .site-header{
+      position:sticky; top:0; background:var(--surface);
+      border-bottom:1px solid #222; padding:12px 16px;
+      display:flex; gap:12px; align-items:center;
+    }
+    .btn{padding:6px 10px; border:1px solid #2a3347; border-radius:8px; background:#0f1420; color:var(--ink); cursor:pointer}
+    .wrap{max-width:1000px; margin:24px auto; padding:0 16px;}
+    .panel{background:var(--surface); border:1px solid #222; border-radius:12px; padding:16px; margin-bottom:24px;}
+    .panel h2{margin:0 0 8px;}
+    .note{color:var(--muted); font-size:14px;}
+
+    /* Commit 2 – Add overlapping cards with z-index layering */
+    /* Overlapping cards setup */
+    .stage{position:relative; height:320px; background:var(--elev); border-radius:12px; border:1px dashed #2a3347; margin-top:12px;}
+    .card{position:absolute; width:210px; height:120px; border-radius:12px; display:grid; place-items:center; font-weight:700; color:#0a0e16; box-shadow:0 10px 22px rgba(0,0,0,.35);}
+    .a{left:24px; top:24px; background:var(--blue);}
+    .b{left:100px; top:92px; background:var(--peach); z-index:2;}
+    .c{left:176px; top:160px; background:var(--pink); z-index:1;}
+
+    /* Commit 3 – Demonstrate new stacking context (transform) */
+    .context{position:relative; height:220px; margin-top:12px; border-radius:12px; border:1px dashed #2a3347; background:var(--elev); transform:translateZ(0);}
+    .chip{position:absolute; left:20px; top:20px; padding:8px 12px; border-radius:999px; background:var(--blue); color:#0a0e16; font-weight:700; z-index:9999;}
+    .block{position:absolute; right:20px; bottom:20px; width:260px; height:110px; border-radius:12px; background:var(--peach); display:grid; place-items:center; color:#0a0e16; font-weight:700;}
+
+    /* Commit 4 – Add isolation layer example */
+    .island{position:relative; isolation:isolate; height:180px; background:var(--elev); border:1px dashed #2a3347; border-radius:12px; padding:12px; margin-top:16px;}
+    .floating{position:absolute; right:20px; top:20px; width:160px; height:70px; background:var(--pink); border-radius:12px; display:grid; place-items:center; color:#222; font-weight:700; z-index:2;}
+    .base{position:absolute; left:20px; bottom:20px; width:200px; height:100px; background:var(--blue); border-radius:12px; display:grid; place-items:center; color:#222; font-weight:700;}
+
+    /* Commit 5 – Add modal overlay with highest z-index */
+    .backdrop{position:fixed; inset:0; background:var(--backdrop); display:none; z-index:1000;}
+    .modal{position:fixed; inset:0; display:none; place-items:center; z-index:1001;}
+    .box{width:min(92vw,520px); background:var(--surface); border:1px solid #222; border-radius:14px; padding:20px; box-shadow:0 28px 60px rgba(0,0,0,.5);}
+    code{background:#0b0e14; padding:2px 6px; border-radius:6px; border:1px solid #1f2634}
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <strong>L9 — Z-index (Lite)</strong>
+    <span class="note">Commit 5 – modal overlay</span>
+    <button class="btn" id="open">Open modal</button>
+  </header>
+
+  <main class="wrap">
+    <section class="panel">
+      <h2>Overlapping cards</h2>
+      <p class="note">Card .b has z-index:2, card .c has z-index:1, and card .a has no z-index (default stacking).</p>
+      <div class="stage">
+        <div class="card a">card .a</div>
+        <div class="card b">card .b (on top)</div>
+        <div class="card c">card .c</div>
+      </div>
+
+      <h2>New stacking context (transform)</h2>
+      <p class="note">Parent with <code>transform: translateZ(0)</code> creates its own stacking context. The blue chip (z:9999) can't overlap outside this box.</p>
+      <div class="context">
+        <div class="chip">.chip (z:9999)</div>
+        <div class="block">peer block</div>
+      </div>
+
+      <h2>Isolation layer</h2>
+      <p class="note"><code>isolation:isolate</code> creates a local stacking context, keeping its z-index layers separate.</p>
+      <div class="island">
+        <div class="floating">floating (z:2)</div>
+        <div class="base">base (z:auto)</div>
+      </div>
+    </section>
+  </main>
+
+  <div class="backdrop" id="backdrop"></div>
+  <div class="modal" id="modal"><div class="box">
+    <h3>Modal on top</h3>
+    <p>Fixed + high <code>z-index</code>. Covers everything.</p>
+    <button class="btn" id="close">Close</button>
+  </div></div>
+
+  <script defer>
+    const $ = id => document.getElementById(id);
+    const show = v => { $("modal").style.display = v?"grid":"none"; $("backdrop").style.display = v?"block":"none"; };
+    $("open").addEventListener("click", () => show(true));
+    $("close").addEventListener("click", () => show(false));
+    $("backdrop").addEventListener("click", () => show(false));
+  </script>
+</body>
+</html>

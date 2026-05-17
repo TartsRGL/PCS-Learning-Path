@@ -1,0 +1,76 @@
+  <!-- Commit 1: Add basic structure & root variables -->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L11 – Modern Units & Functions</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- CSS-only commits:
+       2: fluid typography (clamp)
+       3: width constraints (min/max)
+       7: utility classes (fluid, btn, etc.)
+       8: final polish (radius, spacing, notes)
+  -->
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="title">Modern Units & Functions</h1>
+      <p class="subtitle">clamp(), min(), max(), rem, em, vw, vh</p>
+    </div>
+  </header>
+
+  <!-- Commit 5: Add hero section using viewport units -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Viewport Units in Action</h2>
+      <p>This hero uses <code>100vh</code> on desktop,
+         but safer <code>100svh</code> on mobile browsers.</p>
+      <a href="#demo" class="btn-hero">See Demo Below</a>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="intro">
+      <h2>Goal</h2>
+      <p>Build a tiny layout that scales nicely using
+         modern CSS units and math functions.</p>
+    </section>
+
+    <!-- Commit 3 affects this block (min()/max() via CSS) -->
+    <section id="demo" class="demo">
+      <h2>Demo Area</h2>
+      <p>Below are examples of how modern CSS units behave.</p>
+
+      <!-- Commit 4: rem vs em nested example -->
+      <article class="text-scale">
+        <h3>rem vs em example</h3>
+        <p>Outer text uses base size (1rem). Inside a nested block below,
+           all spacing and font sizing are relative to its own parent.</p>
+
+        <div class="nested">
+          <p>This is nested <strong>1em</strong> base text.</p>
+          <p class="small">Smaller text at 0.8em</p>
+          <p class="big">Bigger text at 1.25em</p>
+        </div>
+      </article>
+
+      <!-- Commit 6: Responsive cards with clamp() gaps + minmax grid -->
+      <div class="cards">
+        <div class="card">Card One</div>
+        <div class="card">Card Two</div>
+        <div class="card">Card Three</div>
+        <div class="card">Card Four</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>&copy; 2025 PCScss L11</small>
+    </div>
+  </footer>
+</body>
+</html>

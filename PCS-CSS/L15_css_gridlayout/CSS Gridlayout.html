@@ -1,0 +1,93 @@
+<!-- Commit 1 – Add basic HTML structure for gallery -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Grid</title>
+
+  <style>
+    /* Commit 2 – Enable CSS Grid layout for .gallery */
+    .gallery {
+      display: grid;
+
+      /* Commit 4 – Responsive layout with auto-fit */
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    /* Commit 3 – Add basic visual styling for .item */
+    /* Commit 5 – Add color + spacing + typography */
+    /* Commit 7 – Final cleanup: variables and visual consistency */
+    /* Commit 7.1 – Visual spacing under hero */
+    
+    main {
+     padding: 2rem 1rem;
+    }
+
+    :root {
+      --accent: #4A90E2;
+      --note-bg: #f5f5f5;
+      --padding: 2rem;
+      --radius: 0.5rem;
+    }
+
+    .item {
+      background: var(--accent);
+      color: white;
+      padding: var(--padding);
+      border-radius: var(--radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    /* Commit 6 – Add hero and footer note blocks */
+    .hero {
+      text-align: center;
+      padding: calc(var(--padding) * 1.5) 1rem;
+      background: black;
+      color: white;
+      font-size: 1.5rem;
+    }
+
+    .note {
+      margin-top: 2rem;
+      background: var(--note-bg);
+      padding: var(--padding);
+      border-left: 5px solid var(--accent);
+      font-style: italic;
+      border-radius: var(--radius);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <h1>Responsive Gallery Layout</h1>
+    <p>Powered by CSS Grid + auto-fit</p>
+  </header>
+
+  <main>
+    <section class="gallery">
+      <div class="item">A</div>
+      <div class="item">B</div>
+      <div class="item">C</div>
+      <div class="item">D</div>
+      <div class="item">E</div>
+      <div class="item">F</div>
+    </section>
+
+    <div class="note">
+      This grid adapts to screen width using auto-fit and minmax(). Try resizing!
+    </div>
+  </main>
+
+  <footer>
+    <p>CSS Grid example – PCScss L15</p>
+  </footer>
+
+</body>
+</html>

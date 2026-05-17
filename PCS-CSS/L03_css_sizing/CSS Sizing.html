@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Element Sizing Lecture Example</title>
+  <style>
+    /* Commit 1: Add base HTML structure and prepare empty <style> block */
+
+    /* Commit 2: Add base styles for body and layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 200px;
+      border: 1px dashed #333;
+    }
+
+    /* Commit 3: Add heading and base .box styles */
+    h1 {
+      text-align: center;
+    }
+
+    .box {
+      color: white;
+      margin: 10px auto; /* reduced spacing for visual match */
+      padding: 10px;
+      text-align: center;
+      line-height: 1.5;
+      white-space: nowrap;
+    }
+
+    /* Commit 7: Add missing fixed, small and big boxes */
+    .fixed-box {
+      width: 220px;
+      height: 100px;
+      background-color: #3366ff;
+    }
+
+    .small-box {
+      width: 120px;
+      height: 50px;
+      background-color: #ff3366;
+      font-size: 11px;
+    }
+
+    .big-box {
+      width: 300px;
+      height: 150px;
+      background-color: #33cc33;
+    }
+
+    /* Commit 4: Add min-box and max-box with constraints */
+    .min-box {
+      min-width: 150px;
+      min-height: 15px;
+      background-color: #ff9900;
+      width: auto;
+    }
+
+    .max-box {
+      max-width: 350px;
+      max-height: 175px;
+      background-color: #773300;
+      width: auto;
+    }
+
+    /* Commit 5: Add auto-box and text adjustments */
+    .auto-box {
+      width: auto;
+      height: auto;
+      background-color: #9966cc;
+    }
+
+    /* Commit 6: Cleanup and finalize layout */
+    /* All main box types styled. Layout finalized. */
+  </style>
+</head>
+
+<body>
+  <h1>Element Sizing Lecture</h1>
+
+  <div class="box fixed-box">Fixed Size Box (200px x 100px)</div>
+  <div class="box small-box">Small Box (100px x 50px)</div>
+  <div class="box big-box">Big Box (300px x 150px)</div>
+
+  <div class="box min-box">Min Box (150px+ width, 15px+ height)</div>
+  <div class="box max-box">Max Box (up to 350px width, up to 150px height)</div>
+  <div class="box auto-box">Auto Size Box (Adjusts based on content)</div>
+</body>
+
+</html>

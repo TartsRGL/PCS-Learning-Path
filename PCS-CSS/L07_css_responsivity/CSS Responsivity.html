@@ -1,0 +1,85 @@
+<!-- Commit 1: feat: Add base HTML structure for responsive layout -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>L7 – Media Queries (Progressive)</title>
+
+  <!-- Commit 2: feat: Add base styles and layout containers -->
+  <style>
+    /* Commit 3: feat: Introduce CSS variables */
+    :root{
+      --brand: #4CAF50;
+      --gap: 1rem;
+      --page-pad: 1rem;
+      --card-pad: 2rem;
+      --card-bg: #f4f6f8;
+      --card-border: #e3e7eb;
+      --card-radius: .5rem;
+      /* Commit 4: desktop column count */
+      --cols-desktop: 3;
+      /* Commit 5: add tablet/mobile column counts */
+      --cols-tablet: 2;
+      --cols-mobile: 1;
+    }
+
+    /* Base reset & typography */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: Arial, sans-serif; line-height: 1.5; }
+
+    /* Header banner */
+    header { background: var(--brand); color: #fff; text-align: center; padding: 1rem; }
+
+    /* Layout container */
+    .container { display: flex; flex-wrap: wrap; gap: var(--gap); padding: var(--page-pad); }
+
+    /* Base card */
+    .container > section {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--card-radius);
+      padding: var(--card-pad);
+      flex: 1 1 auto; /* baseline; width is overridden by .box-* and @media */
+    }
+
+    /* Commit 4: desktop column sizing (box-3 / box-4) */
+    .box-3 { /* 3 columns on desktop */
+      flex-basis: calc((100% - (var(--cols-desktop) - 1) * var(--gap)) / var(--cols-desktop));
+    }
+    .box-4 { /* slightly wider card (uses cols - 1) */
+      flex-basis: calc((100% - (var(--cols-desktop) - 1) * var(--gap)) / (var(--cols-desktop) - 1));
+    }
+
+    /* Commit 5: media queries (tablet → 2 cols, mobile → 1 col) */
+    @media (max-width: 1024px){
+      body{ background: #fff7f7; } /* teaching color: tablet */
+      header{ background: #ff6b6b; } /* Commit 6: clearer breakpoint signal */
+      .container > section{
+        flex-basis: calc((100% - (var(--cols-tablet) - 1) * var(--gap)) / var(--cols-tablet));
+      }
+    }
+    @media (max-width: 768px){
+      body{ background: #f5faff; } /* teaching color: mobile */
+      header{ background: #60a5fa; } /* Commit 6: clearer breakpoint signal */
+      .container > section{ flex-basis: 100%; }
+    }
+    /* Commit 6: final tidy & visibility – added header color change inside MQ for easy verification */
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Responsive Media Queries</h1>
+  </header>
+
+  <main class="container">
+    <!-- Commit 4: add sizing classes -->
+    <section class="box box-3">Box 1</section>
+    <section class="box box-4">Box 2</section>
+    <section class="box box-3">Box 3</section>
+    <section class="box box-4">Box 4</section>
+    <section class="box box-3">Box 5</section>
+    <section class="box box-4">Box 6</section>
+  </main>
+</body>
+</html>
