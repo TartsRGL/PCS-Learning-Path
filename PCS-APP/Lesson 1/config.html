@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palačinky - Configurator</title>
+    <link rel="stylesheet" href="config.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Recepty</a></li>
+                <li><a href="#">Kontakty</a></li>
+                <li><a href="#">E-shop</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <article>
+            <h1>Palačinky</h1>
+            <section>
+                <h2>Ingredience</h2>
+                <label for="servings">Počet porcí:</label>
+                <input type="number" id="servings" value="3" min="1" max="99" oninput="adjustIngredients()">
+                <button onclick="resetIngredients()">Reset na 3 porce</button>
+                <ul id="ingredients-list">
+                    <li>Mouka - 150g</li>
+                    <li>Mléko - 225ml</li>
+                    <li>Vejce - 2 ks</li>
+                    <li>Špetka soli</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h2>Postup</h2>
+                <ol>
+                    <li><strong>Příprava těsta:</strong> Smíchejte mouku, mléko, vejce a sůl. Míchejte do hladka.</li>
+                    <li><strong>Odpočinek těsta:</strong> Nechte 10–15 minut odstát pro lepší konzistenci.</li>
+                    <li><strong>Příprava pánve:</strong> Na středním ohni rozehřejte pánev s trochou másla.</li>
+                    <li><strong>Smažení:</strong> Nalijte těsto na pánev, smažte 1–2 minuty z každé strany.</li>
+                    <li><strong>Servírování:</strong> Podávejte s marmeládou, Nutellou, ovocem nebo šlehačkou.</li>
+                </ol>
+            </section>
+        </article>
+    </main>
+    
+    <footer>
+        <p>Kontakt: Mgr. Langoš, Palačinková 744, 767 01 Topinkov</p>
+    </footer>
+    
+    <script src="config.js"></script>
+</body>
+</html>
