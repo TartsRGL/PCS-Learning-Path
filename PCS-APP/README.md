@@ -37,12 +37,13 @@ Every folder is a lesson. Every lesson is a chaotic combo of original class code
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/TartsRGL/PCS-APP.git
+   git clone https://github.com/TartsRGL/PCS-Learning-Path.git
+   cd PCS-Learning-Path/PCS-APP
    ```
 2. Dive into a lesson:
 
    ```bash
-   cd PCS-APP/<lesson-folder>
+   cd "PCS-APP/Lesson 1"
    ```
 3. Open `index.html` in your browser and enjoy the weirdness.
 

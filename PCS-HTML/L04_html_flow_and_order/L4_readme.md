@@ -29,11 +29,11 @@ feat: add closing section at the end
 chore: final source order sanity check
 ```
 
-📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-HTML)
+📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-HTML)
 
 ---
 
 ### Acknowledgment
 
-Special thanks to [Praha Coding School](https://www.prahacodingschool.cz)
+Special thanks to [Praha Coding School](https://prahacoding.cz/)
 for the educational foundation.

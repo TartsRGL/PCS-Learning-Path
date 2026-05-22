@@ -38,10 +38,10 @@ chore:completecomplexformcomposition
 
 ```
 
-📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-HTML)
+📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-HTML)
 
 ---
 
 ### Acknowledgment
 
-Special thanks to [Praha Coding School](https://www.prahacodingschool.cz) for the educational foundation.
+Special thanks to [Praha Coding School](https://prahacoding.cz/) for the educational foundation.

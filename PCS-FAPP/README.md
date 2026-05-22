@@ -107,11 +107,8 @@ to enhance productivity and usability.
 #### **Installation**
 1. Clone the repository:
    ```bash
-   git clone https://github.com/TartsRGL/PCS-FAPP.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd PCS-FAPP
+   git clone https://github.com/TartsRGL/PCS-Learning-Path.git
+   cd PCS-Learning-Path/PCS-FAPP
    ```
 3. Install dependencies:
    ```bash
@@ -149,7 +146,7 @@ This project is licensed under the MIT License.
 
 ### **Contact**
 - **Author:** TartsRGL
-- **GitHub:** [PCS-FAPP](https://github.com/TartsRGL/PCS-FAPP)
+- **GitHub:** [PCS-FAPP](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-FAPP)
 - **Email:** [tarts.rgl@gmail.com](mailto:tarts.rgl@gmail.com)
 
 ---
