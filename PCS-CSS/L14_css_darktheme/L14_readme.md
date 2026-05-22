@@ -33,5 +33,4 @@ git commit -m "docs: Add README.md with commit log and learning goals"
 
 ## 🙏 Acknowledgment
 
-Special thanks to [Praha Coding School](https://prahacoding.cz/) and  
-[Mr. Wernerdweight](https://github.com/wernerdweight) for their guidance and inspiration.
+Special thanks to [Praha Coding School](https://prahacoding.cz/) and [Mr. Wernerdweight](https://github.com/wernerdweight) for their guidance and inspiration.
