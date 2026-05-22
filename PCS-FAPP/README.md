@@ -21,26 +21,28 @@ FAPP has transitioned from its original concept as an internal project managemen
 
 A complete specification of the FAPP SaaS MVP is available in the `docs/` folder:
 
-- **[Product Definition](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-product-definition.md):** Vision, target audience, problem statement, and roadmap.
-- **[MVP v0.1 Specification](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-mvp-v01.md):** Detailed scope of features in and out of the initial MVP release.
-- **[User Flow](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-user-flow.md):** Step-by-step user journey from entry to proposal export.
-- **[Output Template](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-output-template.md):** The structure and layout of the generated project proposal.
-- **[Pricing Packages](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-pricing-packages.md):** Details on the three-tier pricing model structure.
+- **[Product Definition](docs/fapp-product-definition.md):** Vision, target audience, problem statement, and roadmap.
+- **[MVP v0.1 Specification](docs/fapp-mvp-v01.md):** Detailed scope of features in and out of the initial MVP release.
+- **[User Flow](docs/fapp-user-flow.md):** Step-by-step user journey from entry to proposal export.
+- **[Output Template](docs/fapp-output-template.md):** The structure and layout of the generated project proposal.
+- **[Pricing Packages](docs/fapp-pricing-packages.md):** Details on the three-tier pricing model structure.
 
 ---
 
 ## Technical Stack & Architecture
 
-### Frontend (Discovery & Setup UI)
-- Interactive discovery wizard forms for project type definition.
-- Responsive styling using modern vanilla CSS.
-- Note-taking and preview modal interfaces.
+### Phase 1: Frontend-Only Prototype
+- Core discovery wizard flow and proposal generator built using vanilla **HTML**, **CSS**, and **JavaScript**.
+- All state (discovery inputs, generated proposal structure) is managed in local JavaScript memory and state.
+- No database, Laravel API, or authentication required in this phase.
 
-### Backend (Laravel API)
-- **Endpoints:**
+### Later Phases (Roadmap & Production)
+- **Backend (Laravel API):**
   - `/proposals` (CRUD operations for storing and retrieving generated proposals).
   - `/discovery-questions` (Dynamic retrieval of questions by project type).
+- **Database:** MySQL/SQLite database for persistent user and proposal data.
 - **Authentication:** Built-in user and agency authentication powered by Laravel Breeze.
+- **Client Portal:** Client-facing delivery workspace and collaboration dashboard.
 
 ---
 

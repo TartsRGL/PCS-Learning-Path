@@ -13,32 +13,34 @@ This document details the minimal viable scope for the initial release of **FAPP
 
 ## Scope Matrix
 
-### **In Scope for MVP v0.1**
-* **Onboarding & Authentication:**
-  * Basic user authentication (agencies/freelancers creating proposals).
-  * Project setup dashboard (list of created proposals).
+### **In Scope for MVP v0.1 (Frontend Prototype)**
+* **Onboarding & Interface:**
+  * Clean landing/entry view for the discovery tool (no login or registration screen needed yet).
 * **Discovery Wizard:**
   * Support for 3 project tracks: **AI Solutions**, **Web Applications**, **Automation Pipelines**.
   * Dynamic multi-step questionnaire based on the selected track.
+* **Data Management:**
+  * Handled entirely in local JavaScript memory/state (no database or Laravel API integration in this phase).
 * **Proposal Generation Engine:**
   * Structured mapping from question answers to proposal components.
-  * Form editing to allow manual polish of generated proposals.
+  * Form editing to allow manual polish of generated proposals in-memory.
 * **Pricing Engine:**
   * Basic configuration input for hourly rate, complexity multiplier, or flat rate presets.
-  * Automatic generation of three packaging tiers (Essential, Professional, Scale).
-* **Sharing & Export:**
-  * Shareable guest/client preview URL.
-  * Option to export proposal structure to Markdown or raw text.
+  * Automatic generation of three packaging tiers (Essential, Professional, Scale) based on selection.
+* **Export:**
+  * Copy generated proposal to clipboard or download as a text/markdown file.
 
-### **Out of Scope (Roadmap Items)**
-* **Real-time Collaboration:** No client-agency commenting or inline edits on the preview page.
+### **Out of Scope for MVP v0.1 (Roadmap / v0.2)**
+* **Backend / Persistence:** No Laravel API, no authentication/user accounts, and no MySQL/SQLite database.
+* **Sharing:** No persistent shareable URLs (guest/client preview pages requiring server storage).
+* **Real-time Collaboration:** No client-agency commenting or inline edits.
 * **Task Management / Delivery Dashboard:** No active project tracking, Kanban boards, or task assignment (the old dashboard concept).
-* **Payment Integration:** No invoice generation or Stripe integration for package deposits.
-* **File Uploads:** No hosting of client assets or architectural diagram files.
+* **Payment Integration:** No invoice generation or Stripe integration.
 
 ---
 
 ## Technical MVP Stack
+
 * **Frontend:** Vanilla HTML, CSS (clean, responsive, CSS variables), and JavaScript.
-* **Backend:** Laravel 10 API.
-* **Database:** MySQL/SQLite storing users, project metadata, discovery responses, and generated proposals.
+* **Backend / API / Database:** None for MVP v0.1.
+* **Roadmap (v0.2+):** Laravel 10 API, MySQL/SQLite database for persistence, and Laravel Breeze authentication.
