@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAPP | Project Value Architect by BotCentralHub</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-area">
+                <span class="brand-badge">BCH</span>
+                <h1 class="brand-title">FAPP <span class="brand-sub">by BotCentralHub</span></h1>
+            </div>
+            <p class="tagline">SaaS Project-Value Architect for AI, Web, and Automation Projects</p>
+        </header>
+
+        <!-- Main Dashboard Split Layout -->
+        <main class="app-main">
+            <!-- Left Side: Discovery Engine -->
+            <section class="discovery-section">
+                <div class="card">
+                    <h2 class="section-title">1. Select Project Track</h2>
+                    <div class="track-selector" id="track-selector">
+                        <button type="button" class="track-btn active" data-track="ai">
+                            <span class="track-badge">AI</span>
+                            <span class="track-label">AI Solution</span>
+                        </button>
+                        <button type="button" class="track-btn" data-track="web">
+                            <span class="track-badge">WEB</span>
+                            <span class="track-label">Web Application</span>
+                        </button>
+                        <button type="button" class="track-btn" data-track="automation">
+                            <span class="track-badge">AUTO</span>
+                            <span class="track-label">Automation Pipeline</span>
+                        </button>
+                    </div>
+
+                    <h2 class="section-title">2. Discovery Questions</h2>
+                    <form id="discovery-form" class="discovery-form">
+                        <div class="form-group">
+                            <label for="project-name">Project Name</label>
+                            <p class="form-desc">Provide a name for this project value proposal.</p>
+                            <input type="text" id="project-name" name="projectName" placeholder="e.g., Support Bot MVP" autocomplete="off" />
+                        </div>
+
+                        <!-- Questions will be dynamically loaded here by app.js -->
+                        <div id="dynamic-questions-container"></div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="primary-btn" id="generate-btn">
+                                <span>Architect Project Value</span>
+                                <span class="btn-arrow">→</span>
+                            </button>
+                            <button type="button" class="secondary-btn" id="reset-btn">
+                                <span>Reset Form</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Right Side: Proposal Preview -->
+            <section class="preview-section">
+                <div class="card preview-card">
+                    <div class="preview-header">
+                        <h2 class="section-title">Project Value Proposal</h2>
+                        <div class="action-buttons-group">
+                            <button type="button" class="secondary-btn" id="edit-btn" disabled>
+                                <span>Edit Proposal</span>
+                            </button>
+                            <button type="button" class="secondary-btn" id="copy-btn" disabled>
+                                <span>Copy Markdown</span>
+                            </button>
+                            <button type="button" class="secondary-btn" id="download-btn" disabled>
+                                <span>Download (.md)</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Placeholder before generation -->
+                    <div class="preview-placeholder" id="preview-placeholder">
+                        <div class="placeholder-icon">📋</div>
+                        <h3>Your proposal draft will appear here</h3>
+                        <p>Complete the discovery questions on the left and click "Architect Project Value" to generate a structured proposal with custom pricing packages.</p>
+                    </div>
+
+                    <!-- Dynamic Proposal Output (Hidden Initially) -->
+                    <div class="proposal-output hidden" id="proposal-output">
+                        <article class="proposal-doc">
+                            <!-- Header Info -->
+                            <div class="doc-header">
+                                <h1 id="out-project-title">PROJECT VALUE ARCHITECTURE</h1>
+                                <div class="doc-meta">
+                                    <span><strong>Generated By:</strong> FAPP by BotCentralHub</span>
+                                    <span><strong>Track:</strong> <span id="out-track-type">-</span></span>
+                                </div>
+                                <div class="doc-meta" style="margin-top: 4px; border-top: 1px dashed var(--border-color); padding-top: 4px;">
+                                    <span><strong>Completeness:</strong> <span id="out-completeness">-</span></span>
+                                    <span><strong>Clarity Status:</strong> <span id="out-clarity-status">-</span></span>
+                                </div>
+                                <div id="edit-mode-indicator" class="edit-indicator hidden">
+                                    <span>✏️ Editing enabled — customize text blocks below.</span>
+                                </div>
+                            </div>
+
+                            <!-- Document Sections -->
+                            <div class="doc-section">
+                                <h3>1. Project Summary</h3>
+                                <p id="out-summary" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>2. Problem Diagnosis</h3>
+                                <p id="out-diagnosis" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>3. Target State</h3>
+                                <p id="out-target-state" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>4. Business Value</h3>
+                                <p id="out-business-value" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>5. Recommended Scope (MVP)</h3>
+                                <p id="out-recommended-scope" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>6. What is Outside MVP (Out of Scope)</h3>
+                                <p id="out-out-of-scope" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>7. Risks and Open Questions</h3>
+                                <p id="out-risks" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>8. Suggested Next Steps</h3>
+                                <p id="out-next-steps" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>9. System Recommendation</h3>
+                                <p id="out-recommendation" class="answer-block"></p>
+                            </div>
+
+                            <div class="doc-section">
+                                <h3>10. Proposal Quality Assistant</h3>
+                                <div id="out-quality-assistant" class="answer-block"></div>
+                            </div>
+
+                            <!-- Pricing Packages -->
+                            <div class="doc-section no-border">
+                                <h3>11. Pricing & Packaging Options</h3>
+                                <div class="pricing-grid" id="pricing-packages-container">
+                                    <!-- Dynamic pricing packages generated here -->
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Toast Notification -->
+        <div id="toast" class="toast hidden">Proposal copied to clipboard!</div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>&copy; 2026 BotCentralHub. FAPP prototype for project discovery and proposal architecture.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
