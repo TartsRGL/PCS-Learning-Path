@@ -1,7 +1,7 @@
 # 🎨 PCS-CSS
 
 Welcome to my CSS dojo.  
-This repo continues where [PCS-APP](https://github.com/TartsRGL/PCS-APP) left off – diving deeper into the world of CSS.  
+This repo continues where [PCS-APP](../PCS-APP/) left off – diving deeper into the world of CSS.  
 It’s not just about writing styles. It’s about **understanding** them – and breaking them when needed.
 
 

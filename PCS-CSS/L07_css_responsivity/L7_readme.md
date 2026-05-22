@@ -23,7 +23,7 @@ git commit -m "chore: Final tidy & breakpoint visibility"
 ```
 ---
 
-📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-CSS)
+📁 Back to repo: [PCS-CSS](../)
 
 🙏 **Acknowledgment**  
 Special thanks to [Praha Coding School](https://prahacoding.cz/) and [Mr. Wernedweight](https://github.com/wernerdweight) for their guidance and inspiration.

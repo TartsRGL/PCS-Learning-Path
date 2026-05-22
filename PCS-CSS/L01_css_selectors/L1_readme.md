@@ -27,7 +27,7 @@ git commit -m "chore: Final polish and selector overrides"
 ```
 
 
-📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-CSS)
+📁 Back to repo: [PCS-CSS](../)
 
 ---
 

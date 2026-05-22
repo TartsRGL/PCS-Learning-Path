@@ -29,7 +29,7 @@ git commit -m "style: Adjust absolute box styles for alignment and clarity"
 
 ---
 
-📁 [Back to repo: PCS-CSS](https://github.com/TartsRGL/PCS-CSS)
+📁 [Back to repo: PCS-CSS](../)
 
 ## 🙏 Acknowledgment
 
