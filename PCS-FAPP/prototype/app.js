@@ -248,6 +248,7 @@ const projectTracks = {
 // State Variables
 let currentTrack = "ai";
 let proposalData = null;
+let isEditing = false;
 
 // DOM Elements
 const trackSelector = document.getElementById("track-selector");
@@ -260,6 +261,21 @@ const downloadBtn = document.getElementById("download-btn");
 const toast = document.getElementById("toast");
 const resetBtn = document.getElementById("reset-btn");
 const projectNameInput = document.getElementById("project-name");
+const editBtn = document.getElementById("edit-btn");
+const editModeIndicator = document.getElementById("edit-mode-indicator");
+
+// Editable fields mapping for proposal sections
+const editableFields = [
+    { id: "out-summary", key: "summary", isQuestion: true },
+    { id: "out-diagnosis", key: "diagnosis", isQuestion: true },
+    { id: "out-target-state", key: "targetState", isQuestion: true },
+    { id: "out-business-value", key: "businessValue", isQuestion: true },
+    { id: "out-recommended-scope", key: "scope", isQuestion: true },
+    { id: "out-out-of-scope", key: "outOfScope", isQuestion: true },
+    { id: "out-risks", key: "risks", isQuestion: true },
+    { id: "out-next-steps", key: "nextSteps", isQuestion: true },
+    { id: "out-recommendation", key: "recommendation", isQuestion: false }
+];
 
 // Render discovery questions based on the active track
 function renderQuestions(trackKey) {
@@ -308,33 +324,37 @@ function handleTrackChange(trackKey) {
     renderQuestions(trackKey);
 }
 
-// Generate the proposal preview from user answers
-function generateProposal(event) {
-    event.preventDefault();
+// Run Proposal Quality Assistant analysis and render/update DOM
+function runQualityAssistant() {
+    if (!proposalData) return;
 
-    const formData = new FormData(discoveryForm);
     const track = projectTracks[currentTrack];
-    
-    // Project name
-    const projectNameVal = projectNameInput.value.trim();
-    const projectName = projectNameVal || "Untitled FAPP Project";
-
-    // Calculate completeness
-    const totalFields = track.questions.length;
-    let filledFields = 0;
-    
-    proposalData = {
-        projectName: projectName,
-        trackName: track.name,
-        timestamp: new Date().toLocaleDateString(),
-        answers: {}
+    const weakFields = [];
+    const followUps = [];
+    const followUpQuestionsMap = {
+        summary: "What is the primary goal of this solution? Can you define who the end users are?",
+        diagnosis: "What specific manual steps are currently taken? How long does each step take or how much does it cost?",
+        targetState: "What is the detailed step-by-step user journey? How does the solution integrate with other tools?",
+        businessValue: "What is the estimated ROI? What are the key success metrics for the business?",
+        scope: "What features are absolutely required for the very first launch vs nice-to-haves?",
+        outOfScope: "What is the most tempting feature to add that must be kept out of scope to avoid delays?",
+        risks: "What dependencies, API limits, or security restrictions might we encounter?",
+        nextSteps: "What is the first action to take today to kick off this project?"
     };
 
+    // Calculate completeness based on answers
+    const totalFields = track.questions.length;
+    let filledFields = 0;
+
     track.questions.forEach(q => {
-        const value = formData.get(q.id).trim();
-        proposalData.answers[q.id] = value || "Not specified yet.";
-        if (value.length > 0) {
+        const val = (proposalData.answers[q.id] || "").trim();
+        const isPlaceholder = val === "Not specified yet." || val === "";
+        if (!isPlaceholder) {
             filledFields++;
+        }
+        if (isPlaceholder || val.length < 25) {
+            weakFields.push(q.label);
+            followUps.push(followUpQuestionsMap[q.id]);
         }
     });
 
@@ -351,39 +371,6 @@ function generateProposal(event) {
     
     proposalData.completeness = `${filledFields} / ${totalFields} fields`;
     proposalData.clarityStatus = clarityStatus;
-
-    // Recommendation
-    let recommendation = "";
-    if (currentTrack === "ai") {
-        recommendation = "Validate data sources and fallback behavior first.";
-    } else if (currentTrack === "web") {
-        recommendation = "Validate user roles and core workflow first.";
-    } else if (currentTrack === "automation") {
-        recommendation = "Validate source/target API access and error handling first.";
-    }
-    proposalData.recommendation = recommendation;
-
-    // Proposal Quality Assistant analysis
-    const weakFields = [];
-    const followUps = [];
-    const followUpQuestionsMap = {
-        summary: "What is the primary goal of this solution? Can you define who the end users are?",
-        diagnosis: "What specific manual steps are currently taken? How long does each step take or how much does it cost?",
-        targetState: "What is the detailed step-by-step user journey? How does the solution integrate with other tools?",
-        businessValue: "What is the estimated ROI? What are the key success metrics for the business?",
-        scope: "What features are absolutely required for the very first launch vs nice-to-haves?",
-        outOfScope: "What is the most tempting feature to add that must be kept out of scope to avoid delays?",
-        risks: "What dependencies, API limits, or security restrictions might we encounter?",
-        nextSteps: "What is the first action to take today to kick off this project?"
-    };
-
-    track.questions.forEach(q => {
-        const val = formData.get(q.id).trim();
-        if (val.length < 25) {
-            weakFields.push(q.label);
-            followUps.push(followUpQuestionsMap[q.id]);
-        }
-    });
 
     // Value framing recommendation
     let valueFraming = "";
@@ -408,27 +395,11 @@ function generateProposal(event) {
         ]
     };
 
-    // Populate proposal preview document DOM
-    document.getElementById("out-project-title").textContent = proposalData.projectName.toUpperCase();
-    document.getElementById("out-track-type").textContent = proposalData.trackName;
-    
-    // Completeness & Clarity status indicators
+    // Populate completeness & clarity indicators in DOM
     document.getElementById("out-completeness").textContent = proposalData.completeness;
     const claritySpan = document.getElementById("out-clarity-status");
     claritySpan.textContent = proposalData.clarityStatus;
     claritySpan.className = statusClass;
-
-    document.getElementById("out-summary").textContent = proposalData.answers.summary;
-    document.getElementById("out-diagnosis").textContent = proposalData.answers.diagnosis;
-    document.getElementById("out-target-state").textContent = proposalData.answers.targetState;
-    document.getElementById("out-business-value").textContent = proposalData.answers.businessValue;
-    document.getElementById("out-recommended-scope").textContent = proposalData.answers.scope;
-    document.getElementById("out-out-of-scope").textContent = proposalData.answers.outOfScope;
-    document.getElementById("out-risks").textContent = proposalData.answers.risks;
-    document.getElementById("out-next-steps").textContent = proposalData.answers.nextSteps;
-
-    // System Recommendation
-    document.getElementById("out-recommendation").textContent = proposalData.recommendation;
 
     // Render Quality Assistant DOM
     const qaContainer = document.getElementById("out-quality-assistant");
@@ -525,6 +496,75 @@ function generateProposal(event) {
     });
     checkSection.appendChild(checkList);
     qaContainer.appendChild(checkSection);
+}
+
+// Generate the proposal preview from user answers
+function generateProposal(event) {
+    event.preventDefault();
+
+    const formData = new FormData(discoveryForm);
+    const track = projectTracks[currentTrack];
+    
+    // Project name
+    const projectNameVal = projectNameInput.value.trim();
+    const projectName = projectNameVal || "Untitled FAPP Project";
+
+    // Initialize edit states
+    isEditing = false;
+    editBtn.classList.remove("active-edit");
+    editBtn.querySelector("span").textContent = "Edit Proposal";
+    editModeIndicator.classList.add("hidden");
+
+    proposalData = {
+        projectName: projectName,
+        trackName: track.name,
+        timestamp: new Date().toLocaleDateString(),
+        answers: {}
+    };
+
+    track.questions.forEach(q => {
+        const value = formData.get(q.id).trim();
+        proposalData.answers[q.id] = value || "Not specified yet.";
+    });
+
+    // Recommendation
+    let recommendation = "";
+    if (currentTrack === "ai") {
+        recommendation = "Validate data sources and fallback behavior first.";
+    } else if (currentTrack === "web") {
+        recommendation = "Validate user roles and core workflow first.";
+    } else if (currentTrack === "automation") {
+        recommendation = "Validate source/target API access and error handling first.";
+    }
+    proposalData.recommendation = recommendation;
+
+    // Run Quality Assistant checks and rendering
+    runQualityAssistant();
+
+    // Populate proposal preview document DOM
+    document.getElementById("out-project-title").textContent = proposalData.projectName.toUpperCase();
+    document.getElementById("out-track-type").textContent = proposalData.trackName;
+    
+    document.getElementById("out-summary").textContent = proposalData.answers.summary;
+    document.getElementById("out-diagnosis").textContent = proposalData.answers.diagnosis;
+    document.getElementById("out-target-state").textContent = proposalData.answers.targetState;
+    document.getElementById("out-business-value").textContent = proposalData.answers.businessValue;
+    document.getElementById("out-recommended-scope").textContent = proposalData.answers.scope;
+    document.getElementById("out-out-of-scope").textContent = proposalData.answers.outOfScope;
+    document.getElementById("out-risks").textContent = proposalData.answers.risks;
+    document.getElementById("out-next-steps").textContent = proposalData.answers.nextSteps;
+
+    // System Recommendation
+    document.getElementById("out-recommendation").textContent = proposalData.recommendation;
+
+    // Reset all elements contenteditable and editing class state
+    editableFields.forEach(field => {
+        const el = document.getElementById(field.id);
+        if (el) {
+            el.setAttribute("contenteditable", "false");
+            el.classList.remove("editing");
+        }
+    });
 
     // Render pricing package cards
     const packagesContainer = document.getElementById("pricing-packages-container");
@@ -565,13 +605,65 @@ function generateProposal(event) {
     previewPlaceholder.classList.add("hidden");
     proposalOutput.classList.remove("hidden");
 
-    // Enable export actions
+    // Enable export and edit actions
     copyBtn.removeAttribute("disabled");
     downloadBtn.removeAttribute("disabled");
+    editBtn.removeAttribute("disabled");
 
     // Scroll to preview on mobile/tablets
     if (window.innerWidth <= 1024) {
         proposalOutput.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+// Toggle between viewing and editing generated proposal text blocks
+function toggleEditMode() {
+    if (!proposalData) return;
+
+    isEditing = !isEditing;
+
+    if (isEditing) {
+        // Enter Edit Mode
+        editBtn.classList.add("active-edit");
+        editBtn.querySelector("span").textContent = "Save Edits";
+        editModeIndicator.classList.remove("hidden");
+
+        editableFields.forEach(field => {
+            const el = document.getElementById(field.id);
+            if (el) {
+                el.setAttribute("contenteditable", "true");
+                el.classList.add("editing");
+            }
+        });
+
+        // Focus first field
+        const firstEl = document.getElementById("out-summary");
+        if (firstEl) {
+            firstEl.focus();
+        }
+    } else {
+        // Exit / Save Edit Mode
+        editBtn.classList.remove("active-edit");
+        editBtn.querySelector("span").textContent = "Edit Proposal";
+        editModeIndicator.classList.add("hidden");
+
+        editableFields.forEach(field => {
+            const el = document.getElementById(field.id);
+            if (el) {
+                el.setAttribute("contenteditable", "false");
+                el.classList.remove("editing");
+
+                const newText = el.innerText.trim();
+                if (field.isQuestion) {
+                    proposalData.answers[field.key] = newText;
+                } else {
+                    proposalData[field.key] = newText;
+                }
+            }
+        });
+
+        // Recalculate and update Proposal Quality Assistant DOM
+        runQualityAssistant();
     }
 }
 
@@ -726,7 +818,23 @@ function downloadMarkdownFile() {
 function resetForm() {
     discoveryForm.reset();
     proposalData = null;
-    
+    isEditing = false;
+
+    // Reset Edit button state
+    editBtn.classList.remove("active-edit");
+    editBtn.querySelector("span").textContent = "Edit Proposal";
+    editBtn.setAttribute("disabled", "true");
+    editModeIndicator.classList.add("hidden");
+
+    // Make sure editable fields are reset and no longer editable
+    editableFields.forEach(field => {
+        const el = document.getElementById(field.id);
+        if (el) {
+            el.setAttribute("contenteditable", "false");
+            el.classList.remove("editing");
+        }
+    });
+
     // Reset outputs
     document.getElementById("out-project-title").textContent = "PROJECT VALUE ARCHITECTURE";
     document.getElementById("out-track-type").textContent = "-";
@@ -769,6 +877,11 @@ function setupEventListeners() {
 
     // Form submission
     discoveryForm.addEventListener("submit", generateProposal);
+
+    // Edit button clicks
+    if (editBtn) {
+        editBtn.addEventListener("click", toggleEditMode);
+    }
 
     // Export buttons
     copyBtn.addEventListener("click", copyToClipboard);
