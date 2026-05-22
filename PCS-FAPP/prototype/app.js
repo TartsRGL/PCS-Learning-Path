@@ -322,6 +322,99 @@ function handleTrackChange(trackKey) {
     });
 
     renderQuestions(trackKey);
+    hideProposalPreview();
+}
+
+// Hide the proposal preview output and reset export/edit states
+function hideProposalPreview() {
+    proposalData = null;
+    isEditing = false;
+
+    // Reset Edit button state
+    if (editBtn) {
+        editBtn.classList.remove("active-edit");
+        editBtn.querySelector("span").textContent = "Edit Proposal";
+        editBtn.setAttribute("disabled", "true");
+    }
+    if (editModeIndicator) {
+        editModeIndicator.classList.add("hidden");
+    }
+
+    // Make sure editable fields are reset and no longer editable
+    if (typeof editableFields !== 'undefined') {
+        editableFields.forEach(field => {
+            const el = document.getElementById(field.id);
+            if (el) {
+                el.setAttribute("contenteditable", "false");
+                el.classList.remove("editing");
+            }
+        });
+    }
+
+    // Reset outputs
+    const titleEl = document.getElementById("out-project-title");
+    if (titleEl) titleEl.textContent = "PROJECT VALUE ARCHITECTURE";
+    
+    const trackEl = document.getElementById("out-track-type");
+    if (trackEl) trackEl.textContent = "-";
+    
+    const compEl = document.getElementById("out-completeness");
+    if (compEl) compEl.textContent = "-";
+    
+    const claritySpan = document.getElementById("out-clarity-status");
+    if (claritySpan) {
+        claritySpan.textContent = "-";
+        claritySpan.className = "";
+    }
+    
+    const summaryEl = document.getElementById("out-summary");
+    if (summaryEl) summaryEl.textContent = "";
+    
+    const diagnosisEl = document.getElementById("out-diagnosis");
+    if (diagnosisEl) diagnosisEl.textContent = "";
+    
+    const targetEl = document.getElementById("out-target-state");
+    if (targetEl) targetEl.textContent = "";
+    
+    const valueEl = document.getElementById("out-business-value");
+    if (valueEl) valueEl.textContent = "";
+    
+    const scopeEl = document.getElementById("out-recommended-scope");
+    if (scopeEl) scopeEl.textContent = "";
+    
+    const outOfScopeEl = document.getElementById("out-out-of-scope");
+    if (outOfScopeEl) outOfScopeEl.textContent = "";
+    
+    const risksEl = document.getElementById("out-risks");
+    if (risksEl) risksEl.textContent = "";
+    
+    const nextStepsEl = document.getElementById("out-next-steps");
+    if (nextStepsEl) nextStepsEl.textContent = "";
+    
+    const recEl = document.getElementById("out-recommendation");
+    if (recEl) recEl.textContent = "";
+    
+    const qaEl = document.getElementById("out-quality-assistant");
+    if (qaEl) qaEl.innerHTML = "";
+    
+    const pricingEl = document.getElementById("pricing-packages-container");
+    if (pricingEl) pricingEl.innerHTML = "";
+    
+    // Show/Hide sections
+    if (previewPlaceholder) {
+        previewPlaceholder.classList.remove("hidden");
+    }
+    if (proposalOutput) {
+        proposalOutput.classList.add("hidden");
+    }
+    
+    // Disable export actions
+    if (copyBtn) {
+        copyBtn.setAttribute("disabled", "true");
+    }
+    if (downloadBtn) {
+        downloadBtn.setAttribute("disabled", "true");
+    }
 }
 
 // Run Proposal Quality Assistant analysis and render/update DOM
@@ -628,6 +721,10 @@ function toggleEditMode() {
         editBtn.querySelector("span").textContent = "Save Edits";
         editModeIndicator.classList.remove("hidden");
 
+        // Disable copy and download actions while editing
+        copyBtn.setAttribute("disabled", "true");
+        downloadBtn.setAttribute("disabled", "true");
+
         editableFields.forEach(field => {
             const el = document.getElementById(field.id);
             if (el) {
@@ -646,6 +743,10 @@ function toggleEditMode() {
         editBtn.classList.remove("active-edit");
         editBtn.querySelector("span").textContent = "Edit Proposal";
         editModeIndicator.classList.add("hidden");
+
+        // Re-enable copy and download actions after saving
+        copyBtn.removeAttribute("disabled");
+        downloadBtn.removeAttribute("disabled");
 
         editableFields.forEach(field => {
             const el = document.getElementById(field.id);
@@ -816,52 +917,10 @@ function downloadMarkdownFile() {
 
 // Reset form to initial state
 function resetForm() {
-    discoveryForm.reset();
-    proposalData = null;
-    isEditing = false;
-
-    // Reset Edit button state
-    editBtn.classList.remove("active-edit");
-    editBtn.querySelector("span").textContent = "Edit Proposal";
-    editBtn.setAttribute("disabled", "true");
-    editModeIndicator.classList.add("hidden");
-
-    // Make sure editable fields are reset and no longer editable
-    editableFields.forEach(field => {
-        const el = document.getElementById(field.id);
-        if (el) {
-            el.setAttribute("contenteditable", "false");
-            el.classList.remove("editing");
-        }
-    });
-
-    // Reset outputs
-    document.getElementById("out-project-title").textContent = "PROJECT VALUE ARCHITECTURE";
-    document.getElementById("out-track-type").textContent = "-";
-    document.getElementById("out-completeness").textContent = "-";
-    const claritySpan = document.getElementById("out-clarity-status");
-    claritySpan.textContent = "-";
-    claritySpan.className = "";
-    
-    document.getElementById("out-summary").textContent = "";
-    document.getElementById("out-diagnosis").textContent = "";
-    document.getElementById("out-target-state").textContent = "";
-    document.getElementById("out-business-value").textContent = "";
-    document.getElementById("out-recommended-scope").textContent = "";
-    document.getElementById("out-out-of-scope").textContent = "";
-    document.getElementById("out-risks").textContent = "";
-    document.getElementById("out-next-steps").textContent = "";
-    document.getElementById("out-recommendation").textContent = "";
-    document.getElementById("out-quality-assistant").innerHTML = "";
-    document.getElementById("pricing-packages-container").innerHTML = "";
-    
-    // Show/Hide sections
-    previewPlaceholder.classList.remove("hidden");
-    proposalOutput.classList.add("hidden");
-    
-    // Disable export actions
-    copyBtn.setAttribute("disabled", "true");
-    downloadBtn.setAttribute("disabled", "true");
+    if (discoveryForm) {
+        discoveryForm.reset();
+    }
+    hideProposalPreview();
 }
 
 // Setup Event Listeners
