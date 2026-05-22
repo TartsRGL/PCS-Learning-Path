@@ -363,6 +363,51 @@ function generateProposal(event) {
     }
     proposalData.recommendation = recommendation;
 
+    // Proposal Quality Assistant analysis
+    const weakFields = [];
+    const followUps = [];
+    const followUpQuestionsMap = {
+        summary: "What is the primary goal of this solution? Can you define who the end users are?",
+        diagnosis: "What specific manual steps are currently taken? How long does each step take or how much does it cost?",
+        targetState: "What is the detailed step-by-step user journey? How does the solution integrate with other tools?",
+        businessValue: "What is the estimated ROI? What are the key success metrics for the business?",
+        scope: "What features are absolutely required for the very first launch vs nice-to-haves?",
+        outOfScope: "What is the most tempting feature to add that must be kept out of scope to avoid delays?",
+        risks: "What dependencies, API limits, or security restrictions might we encounter?",
+        nextSteps: "What is the first action to take today to kick off this project?"
+    };
+
+    track.questions.forEach(q => {
+        const val = formData.get(q.id).trim();
+        if (val.length < 25) {
+            weakFields.push(q.label);
+            followUps.push(followUpQuestionsMap[q.id]);
+        }
+    });
+
+    // Value framing recommendation
+    let valueFraming = "";
+    if (currentTrack === "ai") {
+        valueFraming = "Frame the value around time saved, response quality, data reliability, and safe fallback behavior.";
+    } else if (currentTrack === "web") {
+        valueFraming = "Frame the value around user workflow clarity, conversion, reduced admin effort, and maintainability.";
+    } else if (currentTrack === "automation") {
+        valueFraming = "Frame the value around manual work removed, speed of execution, lower error rate, and system reliability.";
+    }
+
+    proposalData.qualityAssistant = {
+        weakFields: weakFields,
+        followUps: followUps,
+        valueFraming: valueFraming,
+        checklist: [
+            "Is the problem clearly stated?",
+            "Is the MVP scope narrow enough?",
+            "Are risks and assumptions visible?",
+            "Is the recommended package easy to justify?",
+            "Are next steps actionable?"
+        ]
+    };
+
     // Populate proposal preview document DOM
     document.getElementById("out-project-title").textContent = proposalData.projectName.toUpperCase();
     document.getElementById("out-track-type").textContent = proposalData.trackName;
@@ -384,6 +429,102 @@ function generateProposal(event) {
 
     // System Recommendation
     document.getElementById("out-recommendation").textContent = proposalData.recommendation;
+
+    // Render Quality Assistant DOM
+    const qaContainer = document.getElementById("out-quality-assistant");
+    qaContainer.innerHTML = "";
+
+    // Weak fields section
+    const weakSection = document.createElement("div");
+    weakSection.className = "qa-sub-section";
+    const weakTitle = document.createElement("h4");
+    weakTitle.textContent = "Missing / Weak Areas";
+    weakSection.appendChild(weakTitle);
+    
+    if (weakFields.length === 0) {
+        const successDiv = document.createElement("div");
+        successDiv.className = "qa-success-msg";
+        successDiv.innerHTML = "<span>✨ All fields have strong clarity! Excellent draft.</span>";
+        weakSection.appendChild(successDiv);
+    } else {
+        const weakList = document.createElement("ul");
+        weakList.className = "qa-list";
+        weakFields.forEach(field => {
+            const li = document.createElement("li");
+            li.innerHTML = `<span class="qa-badge-weak">Weak</span> <strong>${field}</strong>: Needs more detail (fewer than 25 characters).`;
+            weakList.appendChild(li);
+        });
+        weakSection.appendChild(weakList);
+    }
+    qaContainer.appendChild(weakSection);
+
+    // Follow-up questions section
+    const followSection = document.createElement("div");
+    followSection.className = "qa-sub-section";
+    const followTitle = document.createElement("h4");
+    followTitle.textContent = "Suggested Follow-up Questions";
+    followSection.appendChild(followTitle);
+
+    if (followUps.length === 0) {
+        const successDiv = document.createElement("div");
+        successDiv.className = "qa-success-msg";
+        successDiv.innerHTML = "<span>✨ None - proposal is complete and clear.</span>";
+        followSection.appendChild(successDiv);
+    } else {
+        const followList = document.createElement("ul");
+        followList.className = "qa-list";
+        followUps.forEach(q => {
+            const li = document.createElement("li");
+            li.textContent = q;
+            followList.appendChild(li);
+        });
+        followSection.appendChild(followList);
+    }
+    qaContainer.appendChild(followSection);
+
+    // Value framing recommendation section
+    const valueSection = document.createElement("div");
+    valueSection.className = "qa-sub-section";
+    const valueTitle = document.createElement("h4");
+    valueTitle.textContent = "Value Framing Recommendation";
+    valueSection.appendChild(valueTitle);
+    
+    const valueP = document.createElement("p");
+    valueP.style.fontStyle = "italic";
+    valueP.style.color = "var(--text-secondary)";
+    valueP.textContent = valueFraming;
+    valueSection.appendChild(valueP);
+    
+    qaContainer.appendChild(valueSection);
+
+    // Before you send checklist section
+    const checkSection = document.createElement("div");
+    checkSection.className = "qa-sub-section";
+    const checkTitle = document.createElement("h4");
+    checkTitle.textContent = "Before You Send Checklist";
+    checkSection.appendChild(checkTitle);
+
+    const checkList = document.createElement("ul");
+    checkList.className = "qa-checklist";
+    
+    proposalData.qualityAssistant.checklist.forEach((item, idx) => {
+        const li = document.createElement("li");
+        
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `chk-qa-${idx}`;
+        
+        const label = document.createElement("label");
+        label.setAttribute("for", `chk-qa-${idx}`);
+        label.textContent = item;
+        label.style.cursor = "pointer";
+        
+        li.appendChild(checkbox);
+        li.appendChild(label);
+        checkList.appendChild(li);
+    });
+    checkSection.appendChild(checkList);
+    qaContainer.appendChild(checkSection);
 
     // Render pricing package cards
     const packagesContainer = document.getElementById("pricing-packages-container");
@@ -458,7 +599,37 @@ function generateMarkdown() {
     md += `## 8. Suggested Next Steps\n${proposalData.answers.nextSteps}\n\n`;
     md += `## 9. System Recommendation\n${proposalData.recommendation}\n\n`;
     
-    md += `## 10. Pricing & Packaging Options\n\n`;
+    md += `## 10. Proposal Quality Assistant\n\n`;
+    
+    md += `### Missing / Weak Areas\n`;
+    if (proposalData.qualityAssistant.weakFields.length === 0) {
+        md += `* All fields have strong clarity! Excellent draft.\n\n`;
+    } else {
+        proposalData.qualityAssistant.weakFields.forEach(field => {
+            md += `* **${field}**: Needs more detail (fewer than 25 characters)\n`;
+        });
+        md += `\n`;
+    }
+
+    md += `### Suggested Follow-up Questions\n`;
+    if (proposalData.qualityAssistant.followUps.length === 0) {
+        md += `* None - proposal is complete and clear.\n\n`;
+    } else {
+        proposalData.qualityAssistant.followUps.forEach(q => {
+            md += `* ${q}\n`;
+        });
+        md += `\n`;
+    }
+
+    md += `### Value Framing Recommendation\n${proposalData.qualityAssistant.valueFraming}\n\n`;
+
+    md += `### Before You Send Checklist\n`;
+    proposalData.qualityAssistant.checklist.forEach(item => {
+        md += `- [ ] ${item}\n`;
+    });
+    md += `\n`;
+    
+    md += `## 11. Pricing & Packaging Options\n\n`;
     
     track.packages.forEach(pkg => {
         md += `### ${pkg.name} ${pkg.isRecommended ? '(Recommended)' : ''}\n`;
@@ -573,6 +744,7 @@ function resetForm() {
     document.getElementById("out-risks").textContent = "";
     document.getElementById("out-next-steps").textContent = "";
     document.getElementById("out-recommendation").textContent = "";
+    document.getElementById("out-quality-assistant").innerHTML = "";
     document.getElementById("pricing-packages-container").innerHTML = "";
     
     // Show/Hide sections

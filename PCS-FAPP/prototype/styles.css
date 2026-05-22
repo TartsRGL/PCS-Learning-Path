@@ -582,3 +582,79 @@ body {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* Quality Assistant Styling */
+.qa-sub-section {
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.qa-sub-section:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.qa-sub-section h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+}
+
+.qa-list {
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.qa-list li {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.qa-list li strong {
+    color: var(--text-primary);
+}
+
+.qa-badge-weak {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    margin-right: 6px;
+}
+
+.qa-success-msg {
+    color: var(--color-success);
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.qa-checklist {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+}
+
+.qa-checklist li {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.qa-checklist input[type="checkbox"] {
+    cursor: pointer;
+    accent-color: var(--color-primary);
+}
