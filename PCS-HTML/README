@@ -42,14 +42,13 @@ Everything is built progressively.
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/TartsRGL/PCS-HTML.git
-
+   git clone https://github.com/TartsRGL/PCS-Learning-Path.git
+   cd PCS-Learning-Path/PCS-HTML
    ```
 2. Navigate to a lesson:
 
    ```bash
-   cd "PCS-HTML/L1_html_skeleton_semantics"
-
+   cd "PCS-HTML/L01_html_skeleton_semantics"
    ```
 3. Open `index.html` and read it like a story.
 
@@ -65,4 +64,4 @@ This repo trains that decision‑making muscle.
 
 ## 🙏 Credits
 
-Thanks to [Praha Coding School](https://www.prahacodingschool.cz) for the foundation.
+Thanks to [Praha Coding School](https://prahacoding.cz/) for the foundation.

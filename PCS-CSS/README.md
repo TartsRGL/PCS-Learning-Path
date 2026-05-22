@@ -51,11 +51,13 @@ It’s not a textbook – it’s a trajectory.
    ```bash
    git clone https://github.com/TartsRGL/PCS-Learning-Path.git
    cd PCS-Learning-Path/PCS-CSS
+   ```
 
 2. Navigate to a lesson:
    
    ```bash
-   cd "PCS-CSS/L1 CSS_selectors"
+   cd "PCS-CSS/L01_css_selectors"
+   ```
 
 3. Open index.html in your browser and enjoy the ride.
 

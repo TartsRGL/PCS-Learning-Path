@@ -27,11 +27,11 @@ feat: add global footer content
 chore: final semantic sanity check
 ```
 
-📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-HTML)
+📁 Back to repo: [PCS-HTML](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-HTML)
 
 ---
 
 ### 🙏 Acknowledgment
 
-Special thanks to [Praha Coding School](https://www.prahacoding.cz)
+Special thanks to [Praha Coding School](https://prahacoding.cz/)
 for the educational foundation.
