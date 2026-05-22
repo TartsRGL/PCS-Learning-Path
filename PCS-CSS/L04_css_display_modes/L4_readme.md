@@ -24,7 +24,7 @@ git commit -m "feat: Add Grid layout with styled items"
 git commit -m "style: Add nav list styled as inline-block items"
 ```
 
-🔙 [Back to repo: PCS-CSS](../)
+📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-CSS)
 
 🙏 **Acknowledgment**  
 Special thanks to Praha Coding School and Mr. Wernedweight for their guidance and inspiration.

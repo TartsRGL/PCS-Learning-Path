@@ -22,7 +22,7 @@ git commit -m "chore: Cleanup and finalize layout"
 git commit -m "fix: Add missing fixed, small and big boxes to lesson 3"
 ```
 
-🔙 Back to repo: [PCS-CSS](../)
+📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-CSS)
 
 ## 🙏 Acknowledgment
 

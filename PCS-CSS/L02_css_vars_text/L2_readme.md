@@ -32,7 +32,7 @@ git commit -m "chore: Add justified alignment to .lorem paragraph"
 
 ---
 
-📁 Back to repo: PCS-CSS
+📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-CSS)
 
 ---
 

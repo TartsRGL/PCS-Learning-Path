@@ -49,7 +49,8 @@ It’s not a textbook – it’s a trajectory.
 1. Clone the repo:
 
    ```bash
-   git clone https://github.com/TartsRGL/PCS-CSS.git
+   git clone https://github.com/TartsRGL/PCS-Learning-Path.git
+   cd PCS-Learning-Path/PCS-CSS
 
 2. Navigate to a lesson:
    
