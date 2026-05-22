@@ -12,6 +12,7 @@ This is a zero-dependency frontend application. To run it:
 ## Current Features
 
 - **Project Track Discovery**: Choose from three pre-defined tracks (AI Solution, Web Application, Automation Pipeline). Each track dynamically loads its own questionnaire.
+- **Local Storage Draft Persistence**: Discovery form inputs (selected track, project name, custom answers) auto-save locally to the browser's `localStorage` as you type or change tracks. Drafts can be manually saved, cleared, or are automatically restored on page refresh.
 - **Completeness & Clarity Assistant**: Measures discovery questionnaire progress in real-time, assigning a clarity rating (Low, Medium, or High).
 - **Proposal Quality Assistant**: Analyzes answered questions in JavaScript, flagging weak areas (responses shorter than 25 characters) and displaying context-specific follow-up questions.
 - **Inline Proposal Editing**: Users can click the **Edit Proposal** button to edit the generated sections inline via custom `contenteditable` controls. Dynamic ratings recalculate automatically on save.
@@ -20,12 +21,11 @@ This is a zero-dependency frontend application. To run it:
 
 ## Known Limitations
 
-- **Frontend-only**: There is no backend, database integration, or persistence layer. Reloading the browser page resets the form and clears all input data.
+- **Browser-Local Only**: Drafts are stored purely in the local browser via `localStorage`. There is no cloud-syncing, cross-device sharing, or server-side database.
 - **Read-only Pricing**: Pricing packages and cards are mock static templates and cannot be customized/edited.
 - **No External Assets**: Runs purely on local resources and system font stacks.
 
 ## Next Recommended Steps
 
-1. **Persistent State**: Integrate browser local storage (`localStorage`) to auto-save drafts across page reloads.
-2. **Interactive Pricing Engine**: Allow users to customize pricing, adjust package names, or add/remove scope lines directly on the pricing cards.
-3. **Template Engine Integration**: Connect with a PDF/docx export API or library for client-facing PDF generation.
+1. **Interactive Pricing Engine**: Allow users to customize pricing, adjust package names, or add/remove scope lines directly on the pricing cards.
+2. **Template Engine Integration**: Connect with a PDF/docx export API or library for client-facing PDF generation.

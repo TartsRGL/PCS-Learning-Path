@@ -701,3 +701,53 @@ body {
     border-color: var(--color-success);
 }
 
+/* Draft Persistence Styles */
+.discovery-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 0.5rem;
+}
+
+.discovery-header .section-title {
+    margin-bottom: 0;
+}
+
+.draft-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.draft-status-text {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    transition: opacity 0.3s ease;
+}
+
+.draft-btn {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 6px 12px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 0.75rem;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.draft-btn:hover:not(:disabled) {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+}
+
+.draft-btn:active {
+    transform: translateY(1px);
+}
+

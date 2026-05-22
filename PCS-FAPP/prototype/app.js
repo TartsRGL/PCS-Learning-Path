@@ -250,6 +250,10 @@ let currentTrack = "ai";
 let proposalData = null;
 let isEditing = false;
 
+const DRAFT_KEY = "fappPrototypeDraft";
+let draftStatusTimeout = null;
+let autoSaveTimeout = null;
+
 // DOM Elements
 const trackSelector = document.getElementById("track-selector");
 const questionsContainer = document.getElementById("dynamic-questions-container");
@@ -263,6 +267,9 @@ const resetBtn = document.getElementById("reset-btn");
 const projectNameInput = document.getElementById("project-name");
 const editBtn = document.getElementById("edit-btn");
 const editModeIndicator = document.getElementById("edit-mode-indicator");
+const draftStatusText = document.getElementById("draft-status");
+const saveDraftBtn = document.getElementById("save-draft-btn");
+const clearDraftBtn = document.getElementById("clear-draft-btn");
 
 // Editable fields mapping for proposal sections
 const editableFields = [
@@ -323,6 +330,7 @@ function handleTrackChange(trackKey) {
 
     renderQuestions(trackKey);
     hideProposalPreview();
+    saveDraft(true); // Save current track and empty answers silently on switch
 }
 
 // Hide the proposal preview output and reset export/edit states
@@ -414,6 +422,120 @@ function hideProposalPreview() {
     }
     if (downloadBtn) {
         downloadBtn.setAttribute("disabled", "true");
+    }
+}
+
+// Show draft status helper with fade out
+function showDraftStatus(msg, fadeAfter = 2500) {
+    if (!draftStatusText) return;
+    
+    draftStatusText.textContent = msg;
+    draftStatusText.style.opacity = "1";
+    
+    if (draftStatusTimeout) {
+        clearTimeout(draftStatusTimeout);
+    }
+    
+    if (fadeAfter > 0) {
+        draftStatusTimeout = setTimeout(() => {
+            draftStatusText.style.opacity = "0";
+            setTimeout(() => {
+                if (draftStatusText.style.opacity === "0") {
+                    draftStatusText.textContent = "";
+                }
+            }, 300);
+        }, fadeAfter);
+    }
+}
+
+// Save discovery form inputs to local storage
+function saveDraft(silent = false) {
+    try {
+        if (!discoveryForm) return;
+        const formData = new FormData(discoveryForm);
+        const track = projectTracks[currentTrack];
+        if (!track) return;
+        
+        const draft = {
+            track: currentTrack,
+            projectName: projectNameInput ? projectNameInput.value.trim() : "",
+            answers: {}
+        };
+        
+        track.questions.forEach(q => {
+            draft.answers[q.id] = (formData.get(q.id) || "").trim();
+        });
+        
+        localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+        
+        if (!silent) {
+            showDraftStatus("Draft saved");
+        }
+    } catch (e) {
+        console.error("Failed to save draft to localStorage:", e);
+    }
+}
+
+// Load discovery form inputs from local storage
+function loadDraft() {
+    try {
+        const saved = localStorage.getItem(DRAFT_KEY);
+        if (!saved) return false;
+        
+        const draft = JSON.parse(saved);
+        if (!draft || !draft.track || !projectTracks[draft.track]) return false;
+        
+        currentTrack = draft.track;
+        
+        // Update active track selector class UI states
+        if (trackSelector) {
+            const buttons = trackSelector.querySelectorAll(".track-btn");
+            buttons.forEach(btn => {
+                if (btn.getAttribute("data-track") === draft.track) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+        }
+        
+        renderQuestions(draft.track);
+        hideProposalPreview();
+        
+        if (projectNameInput) {
+            projectNameInput.value = draft.projectName || "";
+        }
+        
+        const track = projectTracks[draft.track];
+        track.questions.forEach(q => {
+            const fieldEl = document.getElementById(`q-${q.id}`);
+            if (fieldEl) {
+                fieldEl.value = draft.answers[q.id] || "";
+            }
+        });
+        
+        showDraftStatus("Draft restored from this browser", 4000);
+        return true;
+    } catch (e) {
+        console.error("Failed to load draft from localStorage:", e);
+        return false;
+    }
+}
+
+// Clear discovery form draft from local storage
+function clearDraft(silent = false) {
+    try {
+        localStorage.removeItem(DRAFT_KEY);
+        if (!silent) {
+            showDraftStatus("Draft cleared", 2500);
+        } else {
+            if (draftStatusText) {
+                draftStatusText.textContent = "";
+                draftStatusText.style.opacity = "0";
+            }
+        }
+    } catch (e) {
+        console.error("Failed to clear draft from localStorage:", e);
     }
 }
 
@@ -757,6 +879,11 @@ function toggleEditMode() {
                 const newText = el.innerText.trim();
                 if (field.isQuestion) {
                     proposalData.answers[field.key] = newText;
+                    // Sync back to form textareas
+                    const inputEl = document.getElementById(`q-${field.key}`);
+                    if (inputEl) {
+                        inputEl.value = newText;
+                    }
                 } else {
                     proposalData[field.key] = newText;
                 }
@@ -765,6 +892,9 @@ function toggleEditMode() {
 
         // Recalculate and update Proposal Quality Assistant DOM
         runQualityAssistant();
+
+        // Save draft silently with the newly synced edits
+        saveDraft(true);
     }
 }
 
@@ -921,6 +1051,7 @@ function resetForm() {
         discoveryForm.reset();
     }
     hideProposalPreview();
+    clearDraft(true); // Clear draft silently
 }
 
 // Setup Event Listeners
@@ -950,13 +1081,36 @@ function setupEventListeners() {
     if (resetBtn) {
         resetBtn.addEventListener("click", resetForm);
     }
+
+    // Auto-save draft on typing (debounced by 1 second to avoid UI noise)
+    if (discoveryForm) {
+        discoveryForm.addEventListener("input", () => {
+            if (autoSaveTimeout) {
+                clearTimeout(autoSaveTimeout);
+            }
+            autoSaveTimeout = setTimeout(() => {
+                saveDraft(false);
+            }, 1000);
+        });
+    }
+
+    // Manual draft controls
+    if (saveDraftBtn) {
+        saveDraftBtn.addEventListener("click", () => saveDraft(false));
+    }
+    if (clearDraftBtn) {
+        clearDraftBtn.addEventListener("click", () => clearDraft(false));
+    }
 }
 
 // Initialize Application
 function init() {
     setupEventListeners();
-    // Default load AI Track
-    handleTrackChange("ai");
+    const loaded = loadDraft();
+    if (!loaded) {
+        // Default load AI Track
+        handleTrackChange("ai");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", init);
