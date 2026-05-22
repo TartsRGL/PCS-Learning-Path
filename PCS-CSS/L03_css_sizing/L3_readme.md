@@ -1,6 +1,6 @@
 # Lesson 3 – CSS Sizing
 
-This folder contains the HTML & CSS code for [Lesson 3](https://github.com/TartsRGL/PCS-CSS/tree/main/L3%20CSS_sizing) of the PCScss series.
+This folder contains the HTML & CSS code for [Lesson 3](./) of the PCScss series.
 
 It demonstrates:
 - Fixed sizing (`width` / `height`)
@@ -22,7 +22,7 @@ git commit -m "chore: Cleanup and finalize layout"
 git commit -m "fix: Add missing fixed, small and big boxes to lesson 3"
 ```
 
-🔙 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-CSS)
+📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-CSS)
 
 ## 🙏 Acknowledgment
 

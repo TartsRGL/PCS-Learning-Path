@@ -28,7 +28,7 @@ git commit -m "docs: Add README.md with commit log and learning goals"
 
 ---
 
-📁 [Back to repo: PCS-CSS](https://github.com/TartsRGL/PCS-CSS)
+📁 Back to repo: [PCS-CSS](https://github.com/TartsRGL/PCS-Learning-Path/tree/work/pcs-learning-path/PCS-CSS)
 
 ---
 
