@@ -1,110 +1,58 @@
-# README.md
+# FAPP by BotCentralHub
 
-## PCS-FAPP: Project Management Dashboard
+## Project Value Architect for AI, Web, and Automation Projects
 
-### **Overview**
-PCS-FAPP is a comprehensive project management tool designed to streamline task management, note sharing,
-and collaboration across various projects.
-This dashboard integrates frontend and backend functionalities with advanced UI/UX features
-to enhance productivity and usability.
+FAPP is a SaaS Project-Value Architect designed to help users transform unclear digital ideas into structured, priced, and deliverable project proposals. It eliminates discovery friction and aligns agencies, freelancers, and clients on MVP scopes and value.
 
 ---
 
-### **Features**
+## The Product Shift
 
-#### **Frontend (HTML, CSS, JS)**
-- **Dynamic Project Navigation:**
-  - Projects: BotCentralHub (BCH), ThinkAsimov (TA), and RobotYellowPages (RYP).
-  - Interactive toggles for phase and step visibility.
-  - Modal windows for detailed note management.
-- **Responsive Design:**
-  - Optimized for desktop and mobile devices using media queries.
-  - Animated hover effects and transitions.
-- **Theme Customization:**
-  - Unique color schemes for each project.
+FAPP has transitioned from its original concept as an internal project management dashboard into a client-facing SaaS MVP. The previous dashboard, note-sharing, and task-tracking interfaces are now positioned as **future roadmap items** (client portals and delivery workspaces) rather than the core MVP.
 
-#### **Backend (Laravel API)**
-- **CRUD Functionality:**
-  - Manage tasks and notes through API endpoints:
-    - `/tasks`
-    - `/notes`
-- **User Authentication:**
-  - Secure login and registration via Laravel Breeze.
-  - API protection with `auth:api` middleware.
-- **Data Relationships:**
-  - Tasks and notes linked to specific projects and users.
-
-#### **Git Workflow**
-- Feature branches for modular development.
-- Commit messages aligned with milestones:
-  - Example: `feat: Added toggleDetails functionality`.
+### Core MVP Flow
+1. **Select Project Type:** Choose between AI Solution, Web Application, or Automation Pipeline.
+2. **Guided Discovery:** Answer a targeted set of discovery questions designed to extract business goals and technical requirements.
+3. **Proposal & Price Generation:** Automatically construct a comprehensive project proposal, including a detailed scope, risk analysis, and three distinct pricing packages.
 
 ---
 
-### **Project Structure**
+## Documentation
 
-#### **Frontend**
-- **HTML Templates:**
-  - `app.html` (Main dashboard).
-  - Individual project pages (`0 BCH.html`, `1 TA.html`, `2 RYP.html`).
-- **CSS Styles:**
-  - `style.css` (Global styles).
-  - `unit.css` (Project-specific styles).
-- **JavaScript:**
-  - `dashboardjs.docx` (Main functionalities).
-  - `unitjs.docx` (Project-specific behaviors).
+A complete specification of the FAPP SaaS MVP is available in the `docs/` folder:
 
-#### **Backend**
-- **Database Schema:**
-  - Tables for `tasks`, `notes`, and `users`.
-  - Relationships: Each task/note is associated with a user and a project.
-- **API Endpoints:**
-  - `/tasks`: CRUD operations for tasks.
-  - `/notes`: CRUD operations for notes.
-- **Authentication:**
-  - Laravel Breeze for user login and registration.
+- **[Product Definition](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-product-definition.md):** Vision, target audience, problem statement, and roadmap.
+- **[MVP v0.1 Specification](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-mvp-v01.md):** Detailed scope of features in and out of the initial MVP release.
+- **[User Flow](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-user-flow.md):** Step-by-step user journey from entry to proposal export.
+- **[Output Template](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-output-template.md):** The structure and layout of the generated project proposal.
+- **[Pricing Packages](file:///C:/Users/Misha/Desktop/PCS-Learning-Path/PCS-FAPP/docs/fapp-pricing-packages.md):** Details on the three-tier pricing model structure.
 
 ---
 
-### **Development Timeline**
+## Technical Stack & Architecture
 
-#### **Frontend**
-- 1: HTML structure for dashboard and projects.
-- 2: Global and project-specific CSS.
-- 3: Responsive design and media queries.
-- 4: Toggle functionality for task and phase details.
-- 5: Modal windows for note management.
+### Frontend (Discovery & Setup UI)
+- Interactive discovery wizard forms for project type definition.
+- Responsive styling using modern vanilla CSS.
+- Note-taking and preview modal interfaces.
 
-#### **Backend**
-- 8: Laravel setup and database configuration.
-- 9: Migrations for `tasks`, `notes`, `users`.
-- 10: API endpoints for task and note management.
-- 11: User authentication.
-- 12: API testing with Postman.
-
-#### **Integration**
-- 13: Fetch data from API to frontend.
-- 14: CRUD functionality on the frontend.
-- 15: Error handling and validation.
-
-#### **Finalization**
-- 16: Dashboard enhancements (global modal for notes).
-- 17: Statistics and visualizations.
-- 18: Note sharing and collaboration.
-- 19: Data export (CSV/PDF).
-- 20: Deployment.
-- 21: Final testing and presentation.
+### Backend (Laravel API)
+- **Endpoints:**
+  - `/proposals` (CRUD operations for storing and retrieving generated proposals).
+  - `/discovery-questions` (Dynamic retrieval of questions by project type).
+- **Authentication:** Built-in user and agency authentication powered by Laravel Breeze.
 
 ---
 
-### **Getting Started**
+## Getting Started
 
-#### **Prerequisites**
-- Lavarell
-- Laravel 10.
-- MySQL or SQLite.
+### Prerequisites
+- Laravel 10.x
+- PHP 8.1+
+- Node.js & npm
+- MySQL or SQLite
 
-#### **Installation**
+### Installation
 1. Clone the repository:
    ```bash
    git clone https://github.com/TartsRGL/PCS-FAPP.git
@@ -127,7 +75,7 @@ to enhance productivity and usability.
    ```bash
    php artisan migrate
    ```
-6. Start the development server:
+6. Start the development servers:
    ```bash
    npm run dev
    php artisan serve
@@ -135,24 +83,24 @@ to enhance productivity and usability.
 
 ---
 
-### **Contributing**
+## Contributing
 - Use Git Flow for branch management.
-- Follow commit message conventions.
+- Follow commit message conventions (e.g., `feat: Add discovery wizard controller`).
 - Submit pull requests for review.
 
 ---
 
-### **License**
+## License
 This project is licensed under the MIT License.
 
 ---
 
-### **Contact**
+## Contact
 - **Author:** TartsRGL
 - **GitHub:** [PCS-FAPP](https://github.com/TartsRGL/PCS-FAPP)
 - **Email:** [tarts.rgl@gmail.com](mailto:tarts.rgl@gmail.com)
 
 ---
 
-### **Acknowledgments**
+## Acknowledgments
 Special thanks to [Praha Coding School](https://prahacoding.cz/) & [Mr. Wernerdweight](https://github.com/wernerdweight).
