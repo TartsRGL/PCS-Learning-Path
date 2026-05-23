@@ -45,3 +45,21 @@ State patří do L04.
 - Každý commit je samostatně funkční snapshot
 - JS v L01 neprovádí žádné viditelné změny v UI
 - Struktura JS je připravená pro rozšíření v L02+
+
+---
+
+## Výsledek L01
+
+L01 končí ve chvíli, kdy JavaScript:
+- je připojen pomocí `defer`
+- čeká na připravený DOM
+- má čitelný inicializační tok
+- umí bezpečně ověřit kořen aplikace
+- nepracuje ještě s konkrétními formulářovými poli
+- neobsahuje event listenery, state ani rendering
+
+---
+
+## Další lekce
+
+L02 naváže plnou DOM selection vrstvou. Teprve tam budou přidány `data-js` atributy a centrální mapa prvků, se kterými bude aplikace pracovat.
