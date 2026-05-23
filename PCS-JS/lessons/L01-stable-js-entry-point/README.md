@@ -32,6 +32,8 @@ L01 tyto problémy eliminuje hned na začátku.
 
 C2 ještě nevybírá konkrétní prvky z DOMu. Pouze zpřehledňuje start aplikace tak, aby bylo jasné, kde začíná inicializace a kde budou v dalších lekcích přibývat další vrstvy.
 
+C3 přidává pouze kontrolu kořenového prvku aplikace. Nejde ještě o plnou DOM selection. JavaScript si pouze ověří, že stránka obsahuje aplikační root, a pokud ne, bezpečně se ukončí bez chyby.
+
 DOM selection patří do L02.
 Event listenery patří do L03.
 State patří do L04.
