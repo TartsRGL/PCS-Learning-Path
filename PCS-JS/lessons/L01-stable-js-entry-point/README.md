@@ -23,14 +23,18 @@ L01 tyto problémy eliminuje hned na začátku.
 
 ## Plán commitů
 
-| Commit | Co přibývá                                                                   |
-|--------|------------------------------------------------------------------------------|
-| C1     | Připojit JS soubor k HTML pomocí `defer`, definovat vstupní bod              |
-| C2     | Přidat stabilní DOM reference map — pojmenovat prvky, se kterými JS pracuje  |
+| Commit | Co přibývá                                                              |
+|--------|-------------------------------------------------------------------------|
+| C1     | Připojit JS soubor k HTML pomocí `defer`, definovat vstupní bod         |
+| C2     | Strukturovat stabilní inicializační tok                                 |
+| C3     | Přidat jednoduchý application root guard                                |
+| C4     | Uzavřít lekci finálním entry-point snapshotem                           |
 
-C2 ještě nepřidává žádné chování. Pouze definuje, které prvky JS rozpoznává — přes `data-js` atributy a centrální objekt `dom`. Bez tohoto kroku by každý budoucí commit pracoval se selektory rozptýlenými po celém kódu.
+C2 ještě nevybírá konkrétní prvky z DOMu. Pouze zpřehledňuje start aplikace tak, aby bylo jasné, kde začíná inicializace a kde budou v dalších lekcích přibývat další vrstvy.
 
-Další commity budou přidány v průběhu vývoje lekce.
+DOM selection patří do L02.
+Event listenery patří do L03.
+State patří do L04.
 
 ---
 
