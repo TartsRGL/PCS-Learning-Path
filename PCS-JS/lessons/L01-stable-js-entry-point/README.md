@@ -23,9 +23,12 @@ L01 tyto problémy eliminuje hned na začátku.
 
 ## Plán commitů
 
-| Commit | Co přibývá                                                         |
-|--------|--------------------------------------------------------------------|
-| C1     | Připojit JS soubor k HTML pomocí `defer`, definovat vstupní bod    |
+| Commit | Co přibývá                                                                   |
+|--------|------------------------------------------------------------------------------|
+| C1     | Připojit JS soubor k HTML pomocí `defer`, definovat vstupní bod              |
+| C2     | Přidat stabilní DOM reference map — pojmenovat prvky, se kterými JS pracuje  |
+
+C2 ještě nepřidává žádné chování. Pouze definuje, které prvky JS rozpoznává — přes `data-js` atributy a centrální objekt `dom`. Bez tohoto kroku by každý budoucí commit pracoval se selektory rozptýlenými po celém kódu.
 
 Další commity budou přidány v průběhu vývoje lekce.
 
