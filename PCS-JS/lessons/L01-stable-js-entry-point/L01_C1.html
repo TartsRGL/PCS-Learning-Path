@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Discovery — L01 C1</title>
+</head>
+<body>
+
+  <header>
+    <h1>Project Discovery</h1>
+    <p>Průvodce pro pojmenování a ujasnění vašeho projektu.</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="discovery-heading">
+      <h2 id="discovery-heading">O čem je váš projekt?</h2>
+
+      <form id="discovery-form" novalidate>
+
+        <fieldset>
+          <legend>Základní informace</legend>
+
+          <div>
+            <label for="project-name">Název projektu</label>
+            <input
+              type="text"
+              id="project-name"
+              name="project-name"
+              autocomplete="off"
+              placeholder="Jak váš projekt pracovně nazýváte?"
+            >
+          </div>
+
+          <div>
+            <label for="project-goal">Hlavní cíl projektu</label>
+            <textarea
+              id="project-goal"
+              name="project-goal"
+              rows="3"
+              placeholder="Co má projekt řešit nebo umožnit?"
+            ></textarea>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Kontext a uživatelé</legend>
+
+          <div>
+            <label for="target-user">Pro koho je projekt určen?</label>
+            <input
+              type="text"
+              id="target-user"
+              name="target-user"
+              placeholder="Kdo bude projekt používat?"
+            >
+          </div>
+
+          <div>
+            <label for="core-problem">Jaký problém řeší?</label>
+            <textarea
+              id="core-problem"
+              name="core-problem"
+              rows="3"
+              placeholder="Popište situaci, kterou projekt zlepšuje."
+            ></textarea>
+          </div>
+
+        </fieldset>
+
+        <button type="submit">Uložit odpovědi</button>
+
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>PCS-JS · L01 — Stable JavaScript Entry Point · Commit 1</p>
+  </footer>
+
+  <!-- Commit 1 – Connect stable JavaScript entry point -->
+  <script src="L01_C1.js" defer></script>
+
+</body>
+</html>
