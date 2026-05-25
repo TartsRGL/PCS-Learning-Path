@@ -1,4 +1,4 @@
-#PCSjs 🎯POST 1 Entry Point
+#PCSjs 🎯POST 1 Entry Point™
 
 👀 What’s going on?
 PCSjs starts with one small JS step:
