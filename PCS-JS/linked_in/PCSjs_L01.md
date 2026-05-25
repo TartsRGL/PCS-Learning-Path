@@ -1,36 +1,34 @@
-# PCSjs — Fullstack Frontend Trajectory
-
-```text
-#PCSjs ⚙️ Fullstack Frontend Trajectory™
+#PCSjs 🎯POST 1 Entry Point
 
 👀 What’s going on?
-PCShtml is done. #PCShtml
-PCScss is in ready. #PCScss
-Now comes the next layer-->JavaScript
+PCSjs starts with one small JS step:
+connect the script safely.
+Not events.
+Not state.
+Not rendering.
 
-PCSjs will focus on how static HTML becomes
-a small data-driven frontend application.
+First, JavaScript needs
+a clear and stable entry point.
 
-✅ What’s planned
-- DOM orchestration
-- event architecture
-- data modeling
-- state management
-- async / fetch logic
-- form validation
-- localStorage persistence
-- ES modules and app structure
+✅ What’s inside Lesson 01
+- connect JS with defer
+- define a stable entry point
+- prepare the init flow
+- check the app root
+- avoid unsafe DOM timing
+- keep the UI unchanged
+
 
 💡 Core idea
-HTML defines meaning.
-CSS reacts to structure.
-JavaScript connects behavior, state and data flow.
-That is the bridge to fullstack thinking.
+Before it changes the page,
+it must know when to start,
+where the app begins,
+and how to fail safely.
+
 
 🔜 What’s next?
-Lesson 1 — DOM Orchestration.
-Starting with a real HTML composition
-and connecting it to a clean JavaScript entry point.
+Lesson 02 — DOM Selection & Meaning.
 
-#JavaScript #Frontend #Fullstack #LearningInPublic #WebDevelopment
-```
+#JavaScript #Frontend #Fullstack #PCScss #PCShtml
+
+
