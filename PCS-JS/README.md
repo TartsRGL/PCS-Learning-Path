@@ -1,40 +1,96 @@
-# PCS-JS — JavaScript v PCS Learning Path
+# PCS-JS
 
-## Role PCS-JS
+Welcome to my **JavaScript dojo**.
 
-PCS-JS je třetí blok PCS Learning Path. Navazuje na PCS-HTML a PCS-CSS a uzavírá základní triádu webového vývoje:
+This repo takes the next step after meaningful HTML and responsive CSS.
+HTML defines the structure.
+CSS reacts to the structure.
+JavaScript adds behaviour, state, interaction and data flow.
 
-| Blok     | Otázka           | Role v aplikaci                        |
-|----------|------------------|----------------------------------------|
-| PCS-HTML | Co to je?        | Struktura a **význam** obsahu          |
-| PCS-CSS  | Jak to reaguje?  | Vizuální **reakce** na kontext a stav  |
-| PCS-JS   | Jak se chová?    | **Chování**, stav a interakce          |
+It’s not just about writing scripts.
+It’s about **deciding when JavaScript should enter the page**.
 
-PCS-JS neučí izolovanou syntaxi JavaScriptu. Učí **kdy a proč** JavaScript vstupuje do již smysluplné HTML/CSS struktury — a jak ji rozšiřuje o stav, chování a dynamiku bez toho, aby ji přepisoval.
+## 📚 About the Project
 
----
+**PCS-JS** is a structured, calm journey through **frontend behaviour**:
 
-## Přehled lekcí
+* From a stable script entry point to a small interactive app
+* From DOM selection to events, state and rendering
+* From “how do I write JS” to “why does the app behave this way”
 
-PCS-JS tvoří osm lekcí. Každá lekce rozvíjí jednu schopnost JavaScriptu a zároveň staví na výsledku předchozí:
+Each lesson builds on the last.
+It’s not a syntax reference — it’s a trajectory.
 
-| Lekce | Název                          | Co přidává                                      |
-|-------|--------------------------------|-------------------------------------------------|
-| L01   | Stable JavaScript Entry Point  | Bezpečné a předvídatelné připojení JS k HTML    |
-| L02   | DOM Selection & Meaning        | Výběr elementů podle jejich sémantického smyslu |
-| L03   | Events & User Intent           | Reakce na záměr uživatele, ne jen na klik       |
-| L04   | State Management Basics        | Uchovávání a změna stavu aplikace               |
-| L05   | Forms, Validation & Feedback   | Validace a uživatelská zpětná vazba             |
-| L06   | Data Rendering                 | Dynamické vykreslování dat do struktury         |
-| L07   | Async & API Thinking           | Asynchronní operace a práce s externími daty    |
-| L08   | Mini App Composition           | Složení všech schopností do funkční mini aplikace |
+## 🗂️ Lessons Overview
 
----
+| Lesson | Focus                         | Highlights                          |
+| ------ | ----------------------------- | ----------------------------------- |
+| L01    | Stable JS Entry Point          | defer, init flow, app root guard    |
+| L02    | DOM Selection & Meaning        | data-js hooks, DOM map, guards      |
+| L03    | Events & User Intent           | user actions, listeners, intent     |
+| L04    | State Management Basics        | app state, updates, source of truth |
+| L05    | Forms & Feedback               | validation, messages, accessibility |
+| L06    | Data Rendering                 | summary cards, lists, UI output     |
+| L07    | Async & API Thinking           | loading, success, error states      |
+| L08    | Mini App Composition           | final Project Discovery app         |
 
-## Jedna rostoucí aplikace
+## 🛠️ Method
 
-Celé PCS-JS nestaví osm oddělených mini projektů. Od L01 do L08 **roste jedna malá discovery aplikace** — projektový průvodce, který pomáhá uživateli promyslet a pojmenovat svůj projekt.
+* **Language:** JavaScript
+* **Approach:** Structure-first, behaviour-second
+* **App:** One growing Project Discovery mini app
+* **Rule:** One lesson = one working HTML + JS snapshot path
+* **Limit:** Max. 6 commits per lesson
 
-Každá lekce přidává další vrstvu chování do stejné aplikace. Každý commit je samostatně funkční snapshot — ne mezikrok, ne rozbitý stav.
+Nothing is added just for effect.
+Every layer has a reason.
 
-Tento přístup odráží reálný vývoj: funkční celek, který se iterativně rozrůstá.
+JavaScript does not fix bad HTML.
+JavaScript extends meaningful HTML.
+
+## 🚀 How to Explore
+
+1. Clone the repo:
+
+   ```bash
+   git clone https://github.com/TartsRGL/PCS-Learning-Path.git
+   cd PCS-Learning-Path/PCS-JS
+   ```
+
+2. Navigate to a lesson:
+
+   ```bash
+   cd "L01_js_stable_entry_point"
+   ```
+
+3. Open a snapshot in the browser:
+
+   ```text
+   L01_C1.html
+   L01_C2.html
+   L01_C3.html
+   L01_C4.html
+   ```
+
+4. Read the JavaScript next to the HTML.
+
+The point is not only to run the file.
+The point is to see how the app grows.
+
+## 🧠 Why PCS-JS?
+
+Because many JavaScript problems start before JavaScript.
+
+They start with unclear HTML.
+They grow through unstable selectors.
+They become harder when behaviour, state and rendering are mixed too early.
+
+PCS-JS trains the habit of adding behaviour in layers.
+
+HTML defines meaning.
+CSS reacts to structure.
+JavaScript connects behaviour, state and data flow.
+
+## 🙏 Credits
+
+Thanks to [Praha Coding School](https://prahacoding.cz/) for the foundation.
