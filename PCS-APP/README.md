@@ -1,36 +1,39 @@
-# 🥞 PCS-APP
+# PCS-APP
 
-Welcome to my digital pancake lab.
+Welcome to my **application composition lab**.
 
-This repo collects all my projects and exercises from the **Praha Coding School (PCS)** web development course – with a personal twist.
-Every folder is a lesson. Every lesson is a chaotic combo of original class code + my late-night “what-if” experiments.
+This part of the PCS Learning Path collects larger frontend exercises where HTML, CSS and JavaScript start working together.
 
----
+It is less about isolated syntax.
+It is about **combining structure, style and behaviour into small usable flows**.
 
 ## 📚 About the Project
 
-**PCS-APP** was created to:
+**PCS-APP** is a practical layer for **frontend composition**:
 
-* Keep my PCS lessons organized (and slightly less messy)
-* Go beyond the tutorials and try new things (sometimes they even work)
-* Serve as a living portfolio of my web dev journey, one layout bug at a time
+* From single-page exercises to small interactive flows
+* From layout practice to combined HTML, CSS and JavaScript
+* From “one feature” to “how do these parts work together”
 
-📂 Contents:
+Each project is a snapshot of applied learning.
+It is not the most polished layer — it is the composition layer.
 
-* [Lesson 1 – Pancake Configurator (HTML, CSS, JS)](./Lesson%201)
-* [Lesson 2 – Organic Product Page + Dynamic Cart](./Lesson%202)
-* [Lesson 3 – Grid vs Flexbox Showdown](./Lesson%203)
-* [Lesson 4 – User Forms (Form A & Form B)](./Lesson%204)  <!-- Added Link to Lesson 4 -->
+## 🗂️ Projects Overview
 
----
+| Project | Focus | Highlights |
+| ------- | ----- | ---------- |
+| [Lesson 1](./Lesson%201) | Pancake Configurator | Dynamic form selection, price calculation, and order preview |
+| [Lesson 2](./Lesson%202) | Organic Product Page | Product catalog layout, dynamic cart logic, items sum |
+| [Lesson 3](./Lesson%203) | Grid vs Flexbox Showdown | Comparison of layout systems under responsive constraints |
+| [Lesson 4](./Lesson%204) | User Forms | Form structure, user validation states, and input feedback |
 
-## 🛠️ Tech Stack
+## 🛠️ Method
 
-* **Frontend:** HTML, CSS, JavaScript
-* **Styling:** Responsive layouts with an eye for minimalism (and occasional chaos)
-* **Version Control:** Git + GitHub – because tracking my confusion is half the fun
+* **Languages:** HTML, CSS, JavaScript
+* **Approach:** Compose small frontend flows
+* **Focus:** Structure, layout, interaction and progressive cleanup
 
----
+PCS-APP is where separate skills start working together.
 
 ## 🚀 How to Explore
 
@@ -40,26 +43,24 @@ Every folder is a lesson. Every lesson is a chaotic combo of original class code
    git clone https://github.com/TartsRGL/PCS-Learning-Path.git
    cd PCS-Learning-Path/PCS-APP
    ```
-2. Dive into a lesson:
+
+2. Navigate to a project:
 
    ```bash
-   cd "PCS-APP/Lesson 1"
+   cd "Lesson 1"
    ```
-3. Open `index.html` in your browser and enjoy the weirdness.
 
----
+3. Open the HTML interface in your browser to run the interface flow.
 
-## 🔮 Coming Soon
+## 🧠 Why PCS-APP?
 
-* More lessons, more layout experiments
-* Cleaner, smarter JS (in theory)
-* Backend explorations (PHP, Laravel, and probably tears)
+Because frontend learning eventually has to move from isolated techniques to composed experiences.
 
----
+HTML defines the structure.
+CSS shapes the visual response.
+JavaScript adds behaviour.
+PCS-APP puts those pieces into small working flows.
 
-## 🙏 Thanks
+## 🙏 Credits
 
-Huge shoutout to [**Praha Coding School**](https://prahacoding.cz/) and [Mr. Wernerdweight](https://github.com/wernerdweight) – for showing the way, and letting me break things creatively.
-* And to all the online resources that helped me figure out what I was doing
- (or not doing) right.
-* And to my friends and family for pretending to be impressed by my coding skills.
+Thanks to [Praha Coding School](https://prahacoding.cz/) and [Mr. Wernerdweight](https://github.com/wernerdweight) for the foundation, guidance and code review.
