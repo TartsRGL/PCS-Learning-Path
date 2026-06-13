@@ -1,5 +1,4 @@
 /* Commit 1 – Define stable JavaScript entry point */
-
 document.addEventListener('DOMContentLoaded', function () {
   initApp();
 });
