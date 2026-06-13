@@ -3,8 +3,9 @@
 Welcome to my **CSS dojo**.
 
 This part of the PCS Learning Path continues after meaningful HTML.
-HTML defines the structure.
-CSS teaches that structure how to respond visually.
+
+HTML defines meaning.
+CSS defines visual response.
 
 It’s not just about writing styles.
 It’s about **deciding how structure should react across screens, states and contexts**.
