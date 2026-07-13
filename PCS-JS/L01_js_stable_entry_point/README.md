@@ -1,65 +1,97 @@
 # L01 — Stable JavaScript Entry Point
 
-## Cíl lekce
+## Lesson Goal
 
-Bezpečně připojit JavaScript k HTML dokumentu.
+Connect JavaScript to the Project Discovery page in a stable and predictable way.
 
-V L01 JavaScript **ještě neřídí aplikaci**. Pouze se stabilně připojí — na správném místě, správným způsobem, ve správný čas. Cílem je zajistit, že JS vstoupí do dokumentu předvídatelně a bez vedlejších efektů.
-
----
-
-## Proč začínáme tady
-
-Mnoho výukových materiálů začíná JavaScriptem hned — `document.getElementById`, `alert`, `console.log`. Ale předtím, než JS cokoliv dělá, musí být správně připojený.
-
-Špatně připojený JS je zdrojem chyb, které jsou těžko pochopitelné na začátku:
-- skript běží před tím, než existuje DOM
-- skript blokuje načítání stránky
-- skript ovlivňuje výkon bez viditelného důvodu
-
-L01 tyto problémy eliminuje hned na začátku.
+L01 does not introduce application behaviour yet. It establishes when the script loads, where initialisation begins and how the application exits safely when its root element is unavailable.
 
 ---
 
-## Plán commitů
+## Why This Layer Matters
 
-| Commit | Co přibývá                                                              |
-|--------|-------------------------------------------------------------------------|
-| C1     | Připojit JS soubor k HTML pomocí `defer`, definovat vstupní bod         |
-| C2     | Strukturovat stabilní inicializační tok                                 |
-| C3     | Přidat jednoduchý application root guard                                |
-| C4     | Uzavřít lekci finálním entry-point snapshotem                           |
+Before JavaScript can select interface elements or respond to user actions, it needs a reliable entry point.
 
-C2 ještě nevybírá konkrétní prvky z DOMu. Pouze zpřehledňuje start aplikace tak, aby bylo jasné, kde začíná inicializace a kde budou v dalších lekcích přibývat další vrstvy.
+- **Predictable loading:** `defer` allows the browser to parse the HTML without the script blocking the document.
+- **Explicit initialisation:** `DOMContentLoaded` and `initApp()` make the application startup sequence visible.
+- **Safe startup:** An application-root guard prevents later initialisation from continuing when the expected root element is missing.
+- **Clear extension point:** Later lessons can add DOM references, events, state and rendering without replacing the bootstrap flow.
 
-C3 přidává pouze kontrolu kořenového prvku aplikace. Nejde ještě o plnou DOM selection. JavaScript si pouze ověří, že stránka obsahuje aplikační root, a pokud ne, bezpečně se ukončí bez chyby.
-
-DOM selection patří do L02.
-Event listenery patří do L03.
-State patří do L04.
+L01 establishes startup structure only. It does not yet control individual form fields or change the interface.
 
 ---
 
-## Poznámky
+## Commit Plan
 
-- Každý commit je samostatně funkční snapshot
-- JS v L01 neprovádí žádné viditelné změny v UI
-- Struktura JS je připravená pro rozšíření v L02+
-
----
-
-## Výsledek L01
-
-L01 končí ve chvíli, kdy JavaScript:
-- je připojen pomocí `defer`
-- čeká na připravený DOM
-- má čitelný inicializační tok
-- umí bezpečně ověřit kořen aplikace
-- nepracuje ještě s konkrétními formulářovými poli
-- neobsahuje event listenery, state ani rendering
+| Commit | Added capability |
+|--------|------------------|
+| C1 | Connect the JavaScript file with `defer` and establish the script entry point. |
+| C2 | Organize the startup flow around `DOMContentLoaded` and `initApp()`. |
+| C3 | Add a guard for the application root. |
+| C4 | Finalize and document the stable entry-point rules. |
 
 ---
 
-## Další lekce
+## Lesson Boundaries
 
-L02 naváže plnou DOM selection vrstvou. Teprve tam budou přidány `data-js` atributy a centrální mapa prvků, se kterými bude aplikace pracovat.
+L01 is limited to predictable JavaScript startup.
+
+It does not include:
+
+- selection of individual form controls,
+- a complete DOM reference map,
+- interaction event listeners such as `input`, `change` or `submit`,
+- reading form values,
+- application state,
+- validation,
+- rendering or DOM output updates,
+- asynchronous behaviour,
+- API calls,
+- CSS changes.
+
+`DOMContentLoaded` is used only as the application bootstrap event. L01 introduces no user-facing interaction.
+
+---
+
+## Final Result
+
+At the end of L01:
+
+- JavaScript is connected with `defer`,
+- initialisation waits for the DOM to be ready,
+- `initApp()` provides a clear application entry point,
+- the application root is checked before initialisation continues,
+- a missing root stops startup safely,
+- the page has no new visible behaviour.
+
+The project now has a stable bootstrap flow that later lessons can extend without rebuilding the entry point.
+
+---
+
+## How to Test the Final Snapshot
+
+1. Open:
+
+   `PCS-JS/L01_js_stable_entry_point/L01_C4.html`
+
+2. Open the browser developer tools and go to **Sources**.
+
+3. Find `L01_C4.js`.
+
+4. Place one breakpoint inside the `DOMContentLoaded` handler and another at the beginning of `initApp()`.
+
+5. Reload the page and verify that:
+
+   - the script loads successfully,
+   - the `DOMContentLoaded` handler runs after the document is ready,
+   - `initApp()` runs from the handler,
+   - the application root resolves correctly,
+   - initialisation continues without console errors.
+
+6. Confirm that the page displays no new JavaScript-driven UI changes.
+
+---
+
+## Next Lesson
+
+L02 will add semantic `data-js` hooks, a centralised DOM reference map and guards for the required interface elements.

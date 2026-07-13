@@ -1,46 +1,108 @@
 # L03 — Events & User Intent
 
-## Cíl lekce
-Rozpoznat záměr uživatele (user intent) zachycením a zpracováním browser událostí. Lekce se zaměřuje na zachycení odeslání formuláře (submit intent) a sledování změn v polích formuláře (input intent) s využitím delegace událostí a sémantických data-js značek.
+## Lesson Goal
+
+Recognize user intent by handling browser events from the Project Discovery form.
+
+L03 introduces submit and input events without reading form values or storing application state. The lesson focuses on identifying what the user is trying to do and which discovery field produced the interaction.
 
 ---
 
-## Proč delegace událostí (Event Delegation)
-Místo navěšování posluchačů na každé jednotlivé pole formuláře registrujeme jeden společný posluchač na kořenovém elementu `<form>`.
-- **Méně listenerů:** Jeden listener na formuláři obsluhuje události ze všech discovery polí.
-- **Jednodušší správa:** Jeden bod pro zachycení událostí z více souvisejících elementů.
-- **Stabilní vazba:** Využíváme vlastnosti `event.target` k bezpečné identifikaci konkrétního prvku, který událost vyvolal.
+## Why This Layer Matters
+
+Verified DOM references become useful when the application can respond to user actions.
+
+- **Submit intent:** The form `submit` event identifies an attempt to submit the discovery form.
+- **Input intent:** A delegated `input` listener detects editing across all discovery fields.
+- **Event delegation:** One listener on the form handles input events from multiple related controls.
+- **Semantic identification:** `event.target` and stable `data-js` hooks identify the field that produced the event.
+
+L03 recognises intent only. It does not yet read, validate or store the entered values.
 
 ---
 
-## Plán commitů
-| Commit | Co přibývá |
-|--------|------------|
-| C1     | Zachycení odeslání formuláře (submit) a zabránění reloadu stránky. |
-| C2     | Delegovaný poslech na událost `input` nad celým formulářem a filtrace cílových discovery polí přes `isDiscoveryField`. |
-| C3     | Identifikace konkrétního upravovaného discovery pole (`fieldIntent`) s pomocí pomocné funkce `getDiscoveryFieldIntent`. |
-| C4     | Shrnutí a dokumentace pravidel pro zachycení uživatelského záměru. |
+## Commit Plan
+
+| Commit | Added capability |
+|--------|------------------|
+| C1 | Recognize form submit intent and prevent the default page reload. |
+| C2 | Add delegated input-event handling and filter valid discovery fields with `isDiscoveryField()`. |
+| C3 | Identify the edited discovery field with `getDiscoveryFieldIntent()`. |
+| C4 | Finalize and document the event and user-intent rules. |
 
 ---
 
-## Hranice lekce
-Lekce L03 se striktně drží pouze zachycení záměru (intent) a explicitně neobsahuje:
-- **Žádné čtení hodnot z polí (`field.value`)** – nezajímá nás aktuální text, pouze to, který typ pole uživatel upravuje.
-- **Žádný stav aplikace (State)**.
-- **Žádnou validaci obsahu formuláře**.
-- **Žádné renderování výstupů či manipulaci s DOMem**.
-- **Žádné logování do konzole (console.log)**.
-- **Žádné stylování (CSS)**.
+## Lesson Boundaries
+
+L03 is limited to browser events and user-intent recognition.
+
+It does not include:
+
+- reading `field.value`,
+- application state,
+- mapping field intent to state keys,
+- validation,
+- error or success messages,
+- rendering or DOM output updates,
+- asynchronous behaviour,
+- API calls,
+- `console.log`,
+- CSS changes.
+
+The form submit handler prevents the default reload, but it does not process or store submitted data.
 
 ---
 
-## Jak otevřít a otestovat L03_C4.html
-1. Otevřete soubor `PCS-JS/L03_js_events_user_intent/L03_C4.html` přímo ve webovém prohlížeči.
-2. Otevřete Vývojářské nástroje (F12) a přejděte na záložku **Sources / Zdroje**.
-3. Najděte soubor `L03_C4.js` a vložte breakpoint dovnitř funkce `handleFormInput(event)` bezprostředně po přiřazení proměnné `fieldIntent`.
-4. Pište do jednotlivých vstupních polí formuláře:
-   - Ověřte, že se breakpoint aktivuje.
-   - Ověřte, že se hodnota lokální proměnné `fieldIntent` mění podle upravovaného pole a odpovídá jeho `data-js` atributu (např. `"project-name"`, `"project-goal"`, atd.).
-5. Klikněte na tlačítko "Uložit odpovědi" (odeslání formuláře):
-   - Ověřte, že nedojde k reloadu stránky a zadané texty v polích zůstanou vyplněné.
-   - Konzole prohlížeče musí zůstat čistá bez jakýchkoliv chyb.
+## Final Result
+
+At the end of L03:
+
+- the form recognises submit intent,
+- the default form reload is prevented,
+- one delegated `input` listener handles all discovery fields,
+- `isDiscoveryField()` filters unrelated event targets,
+- `getDiscoveryFieldIntent()` identifies the edited field through its `data-js` hook,
+- no field value is read or stored.
+
+The project can now recognise user actions while keeping events, values and state as separate layers.
+
+---
+
+## How to Test the Final Snapshot
+
+1. Open:
+
+   `PCS-JS/L03_js_events_user_intent/L03_C4.html`
+
+2. Open the browser developer tools and go to **Sources**.
+
+3. Find `L03_C4.js`.
+
+4. Place a breakpoint inside `handleFormInput(event)` immediately after:
+
+   ```js
+   const fieldIntent = getDiscoveryFieldIntent(field);
+   ```
+
+5. Type into each Project Discovery field.
+
+6. Verify that:
+
+   - the breakpoint activates for each discovery field,
+   - `event.target` references the edited control,
+   - `fieldIntent` matches the control’s `data-js` value,
+   - unrelated elements are rejected by `isDiscoveryField()`.
+
+7. Submit the form and verify that:
+
+   - the page does not reload,
+   - the entered text remains visible in the fields,
+   - the console contains no errors.
+
+8. Confirm that no field value is read into JavaScript and no application state is created.
+
+---
+
+## Next Lesson
+
+L04 will map field intent to semantic state keys and store the current form values in `appState`.
