@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Discovery — L04 C2</title>
+</head>
+<body>
+
+  <header>
+    <h1>Project Discovery</h1>
+    <p>Průvodce pro pojmenování a ujasnění vašeho projektu.</p>
+  </header>
+
+  <main data-app="project-discovery" data-js="app-root">
+    <section aria-labelledby="discovery-heading">
+      <h2 id="discovery-heading">O čem je váš projekt?</h2>
+
+      <form id="discovery-form" data-js="discovery-form" novalidate>
+
+        <fieldset>
+          <legend>Základní informace</legend>
+
+          <div>
+            <label for="project-name">Název projektu</label>
+            <input
+              type="text"
+              id="project-name"
+              data-js="project-name"
+              name="project-name"
+              autocomplete="off"
+              placeholder="Jak váš projekt pracovně nazýváte?"
+            >
+          </div>
+
+          <div>
+            <label for="project-goal">Hlavní cíl projektu</label>
+            <textarea
+              id="project-goal"
+              data-js="project-goal"
+              name="project-goal"
+              rows="3"
+              placeholder="Co má projekt řešit nebo umožnit?"
+            ></textarea>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Kontext a uživatelé</legend>
+
+          <div>
+            <label for="target-user">Pro koho je projekt určen?</label>
+            <input
+              type="text"
+              id="target-user"
+              data-js="target-user"
+              name="target-user"
+              placeholder="Kdo bude projekt používat?"
+            >
+          </div>
+
+          <div>
+            <label for="core-problem">Jaký problém řeší?</label>
+            <textarea
+              id="core-problem"
+              data-js="core-problem"
+              name="core-problem"
+              rows="3"
+              placeholder="Popište situaci, kterou projekt zlepšuje."
+            ></textarea>
+          </div>
+
+        </fieldset>
+
+        <button type="submit" data-js="submit-button">Uložit odpovědi</button>
+
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>PCS-JS · L04 — State Management Basics · Commit 2</p>
+  </footer>
+
+  <!-- Commit 1 – Introduce initial application state -->
+  <!-- Commit 2 – Map field intent to state key -->
+  <script src="L04_C2.js" defer></script>
+
+</body>
+</html>
