@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
   initApp();
 });
 
-/* Commit 1 – Establish accessible feedback element contract */
 const appState = {
   projectName: '',
   projectGoal: '',
