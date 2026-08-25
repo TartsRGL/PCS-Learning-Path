@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Discovery — L06 C1</title>
+</head>
+<body>
+
+  <header>
+    <h1>Project Discovery</h1>
+    <p>Průvodce pro pojmenování a ujasnění vašeho projektu.</p>
+  </header>
+
+  <main data-app="project-discovery" data-js="app-root">
+    <section aria-labelledby="discovery-heading">
+      <h2 id="discovery-heading">O čem je váš projekt?</h2>
+
+      <form id="discovery-form" data-js="discovery-form" novalidate>
+
+        <p id="form-feedback" data-js="form-feedback" aria-live="polite"></p>
+
+        <fieldset>
+          <legend>Základní informace</legend>
+
+          <div>
+            <label for="project-name">Název projektu</label>
+            <input
+              type="text"
+              id="project-name"
+              data-js="project-name"
+              name="project-name"
+              autocomplete="off"
+              placeholder="Jak váš projekt pracovně nazýváte?"
+              aria-describedby="project-name-error"
+            >
+            <p id="project-name-error" data-js="project-name-error"></p>
+          </div>
+
+          <div>
+            <label for="project-goal">Hlavní cíl projektu</label>
+            <textarea
+              id="project-goal"
+              data-js="project-goal"
+              name="project-goal"
+              rows="3"
+              placeholder="Co má projekt řešit nebo umožnit?"
+              aria-describedby="project-goal-error"
+            ></textarea>
+            <p id="project-goal-error" data-js="project-goal-error"></p>
+          </div>
+
+        </fieldset>
+
+        <fieldset>
+          <legend>Kontext a uživatelé</legend>
+
+          <div>
+            <label for="target-user">Pro koho je projekt určen?</label>
+            <input
+              type="text"
+              id="target-user"
+              data-js="target-user"
+              name="target-user"
+              placeholder="Kdo bude projekt používat?"
+              aria-describedby="target-user-error"
+            >
+            <p id="target-user-error" data-js="target-user-error"></p>
+          </div>
+
+          <div>
+            <label for="core-problem">Jaký problém řeší?</label>
+            <textarea
+              id="core-problem"
+              data-js="core-problem"
+              name="core-problem"
+              rows="3"
+              placeholder="Popište situaci, kterou projekt zlepšuje."
+              aria-describedby="core-problem-error"
+            ></textarea>
+            <p id="core-problem-error" data-js="core-problem-error"></p>
+          </div>
+
+        </fieldset>
+
+        <button type="submit" data-js="submit-button">Uložit odpovědi</button>
+
+      </form>
+    </section>
+
+    <!-- Commit 1 – Establish project summary output area contract -->
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Přehled projektu</h2>
+
+      <div id="project-summary" data-js="project-summary" aria-live="polite">
+        <article data-js="summary-card">
+          <h3 data-js="summary-project-name">Zatím bez názvu</h3>
+          <p data-js="summary-project-goal">Cíl projektu nebyl zadán.</p>
+
+          <dl>
+            <div>
+              <dt>Cílová skupina:</dt>
+              <dd data-js="summary-target-user">Nespecifikováno</dd>
+            </div>
+            <div>
+              <dt>Řešený problém:</dt>
+              <dd data-js="summary-core-problem">Nespecifikováno</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>PCS-JS · L06 — Data Rendering · Commit 1</p>
+  </footer>
+
+  <!-- Commit 1 – Establish project summary output area contract -->
+  <script src="L06_C1.js" defer></script>
+
+</body>
+</html>
